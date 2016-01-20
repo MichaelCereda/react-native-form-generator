@@ -33,7 +33,7 @@ export class SwitchField extends React.Component{
       <View style={[formStyles.fieldContainer, formStyles.horizontalContainer,  this.props.containerStyle]}
         onLayout={this.handleLayoutChange.bind(this)}>
 
-        <Text style={formStyles.fieldText}>{this.props.text}</Text>
+        <Text style={formStyles.fieldText}>{this.props.label}</Text>
           <Switch
           onValueChange={this.handleValueChange.bind(this)}
           style={{marginTop: 7, position:'absolute', right: 10}}

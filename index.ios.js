@@ -24,9 +24,9 @@ export class Form extends React.Component{
     super();
     this.values = {};
     React.Children.map(props.children, (child)=> {
-
+      
         if(child.ref){
-          this.values[child.ref] = child.value;
+          this.values[child.ref] = child.props.value;
         }
 
     });
