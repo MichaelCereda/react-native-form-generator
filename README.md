@@ -3,7 +3,7 @@ Generate forms with native look and feel in a breeze
 
 ![react-native-form-generator](https://cloud.githubusercontent.com/assets/107390/12443993/02022362-bf2a-11e5-8aae-e567255de8e4.gif)
 
-
+sorry this gif is awful 
 ## Features
 * Easy to use and clean syntax
 * Automatic events handling
