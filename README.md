@@ -7,7 +7,7 @@ sorry this gif is awful
 ## Features
 * Easy to use and clean syntax
 * Automatic events handling
-* Supports custom fields and styles without adding any weird syntax
+* Supports custom fields and styles without adding any weird syntax (just create a react component)
 * Applies by default the current OS style
 
 ## Installation
@@ -16,6 +16,7 @@ sorry this gif is awful
 ```
 ## Warning: I'm actively working on this project
 ### ...so
+* Pull requests are very very welcome
 * All the elements are tested and stable against normal use cases (but i expect to do a lot of changes here and there)
 * Validation is coming with maximum priority
 * Slider hasn't been created
