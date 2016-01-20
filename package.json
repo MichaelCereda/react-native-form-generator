@@ -1,0 +1,27 @@
+{
+  "name": "react-native-form-generator",
+  "version": "0.6.0",
+  "description": "Generate amazing React Native forms in a breeze",
+  "main": "index.ios.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MichaelCereda/react-native-form-generator.git"
+  },
+  "keywords": [
+    "react",
+    "native",
+    "forms",
+    "input",
+    "react",
+    "native"
+  ],
+  "author": "Michael Cereda (info@michaelcereda.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MichaelCereda/react-native-form-generator/issues"
+  },
+  "homepage": "https://github.com/MichaelCereda/react-native-form-generator#readme"
+}
