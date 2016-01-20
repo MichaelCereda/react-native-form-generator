@@ -11,9 +11,9 @@ sorry this gif is awful
 * Applies by default the current OS style
 
 ## Installation
-
-npm install --save react-native-form-generator
-
+```
+    npm install --save react-native-form-generator
+```
 ## Warning: I'm actively working on this project
 ### ...so
 * All the elements are tested and stable against normal use cases (but i expect to do a lot of changes here and there)
