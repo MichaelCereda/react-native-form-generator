@@ -10,8 +10,9 @@ sorry this gif is awful
 * Automatic events handling
 * Supports custom fields and styles without adding any weird syntax (just create a react component)
 * Applies by default the current OS style
-* Inspired by tcomb.
+* Inspired by tcomb, the good parts
 * Performances: just the field changed gets a setState
+* You don't need to create a 'Model' or a 'Struct' that contains your data, just create a form component (the React's way)
 
 ## Installation
 ```
@@ -58,7 +59,7 @@ import { Form, InputField,
         ref='registrationForm'
         onFocus={this.handleFormFocus.bind(this)}
         onChange={this.handleFormChange.bind(this)}
-        name="Personal Information">
+        label="Personal Information">
         <InputField ref='first_name' label='First Name' placeholder='First Name'/>
         <InputField ref='last_name' placeholder='Last Name'/>
         <PickerField ref='gender' placeholder='Gender'

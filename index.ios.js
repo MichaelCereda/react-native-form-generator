@@ -24,7 +24,7 @@ export class Form extends React.Component{
     super();
     this.values = {};
     React.Children.map(props.children, (child)=> {
-      
+
         if(child.ref){
           this.values[child.ref] = child.props.value;
         }
@@ -33,13 +33,17 @@ export class Form extends React.Component{
   }
 
   handleFieldFocused(event, inputHandle){
+    if(this.props.onFocus)
       this.props.onFocus(event, inputHandle);
   }
   handleFieldChange(field_ref, value){
      this.values[field_ref] = value;
     //this.setState(t);
+    if(this.props.onChange){
 
-    this.props.onChange(this.values);
+        this.props.onChange(this.values);
+    }
+
   }
   getValues(){
     return this.values;
@@ -58,20 +62,20 @@ export class Form extends React.Component{
     let wrappedChildren = [];
 
     React.Children.map(this.props.children, (child, i)=> {
-      //if (child.type === Fieldset){
-
+      //if (child.type === this){
         wrappedChildren.push(React.cloneElement(child, {
           key: child.ref || child.type+i,
           fieldRef : child.ref,
           onFocus:this.handleFieldFocused.bind(this),
           onChange:this.handleFieldChange.bind(this)
-        }));
+        }
+      ));
       //}
-    })
+    }, this)
 
     return (
       <View style={[formStyles.form, this.props.style]}>
-        <Separator text={this.props.name}/>
+        <Separator label={this.props.label}/>
 
         <View style={formStyles.fieldsWrapper}>
           {wrappedChildren}
