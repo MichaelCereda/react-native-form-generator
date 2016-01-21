@@ -7,8 +7,8 @@ export class Separator extends React.Component{
   render(){
      return(<View style={[formStyles.separatorContainer, this.props.containerStyle]}>
        {
-         (this.props.text)?
-         <Text style={formStyles.separator}>{this.props.text.toUpperCase()}</Text>
+         (this.props.label)?
+         <Text style={formStyles.separator}>{this.props.label.toUpperCase()}</Text>
        : null
      }
        </View>

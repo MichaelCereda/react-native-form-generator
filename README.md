@@ -11,6 +11,7 @@ sorry this gif is awful
 * Supports custom fields and styles without adding any weird syntax (just create a react component)
 * Applies by default the current OS style
 * Inspired by tcomb.
+* Performances: just the field changed gets a setState
 
 ## Installation
 ```
@@ -68,11 +69,42 @@ import { Form, InputField,
         <DatePickerField ref='birthday'
           minimumDate={new Date('1/1/1900')}
           maximumDate={new Date()} mode='date' placeholder='Birthday'/>
-        <Separator text='Terms & Conditions'/>
-        <LinkField text='Read terms & conditions'     onPress={this.openTermsAndConditionsURL.bind(this)}/>
-        <SwitchField text='I accept Terms & Conditions' ref="has_accepted_conditions"
+        <Separator label='Terms & Conditions'/>
+        <LinkField label='Read terms & conditions'     onPress={this.openTermsAndConditionsURL.bind(this)}/>
+        <SwitchField label='I accept Terms & Conditions' ref="has_accepted_conditions"
           helpText='Please read carefully the terms & conditions'/>
       </Form>);
   }
 }
 ```
+
+## Form
+Form automatically attaches on change events so you just have to attach an handle to the onFocus attibute of Form to monitor all the changes.
+
+It's just a wrapper that allows you to attach onFocus (used to track focus events and keyboard events) and onChange (used to track changes in every field)
+
+## Fields
+#### Common Rules
+* Every field that has to propagate its value in the form needs to have a ref attribute. (Separator and LinkField don't have a ref).
+Check the example to understand the use of the ref attribute.
+
+
+### Separator
+```javascript
+  <Separator
+    label="Example" // optional: if present it will show the text
+    />
+```
+
+### InputField
+```javascript
+  <InputField
+    label='Example' // if label is present the field is rendered with the value on the left (see First Name example in the gif), otherwise its rendered with textinput at full width (second name in the gif).
+    ref='example_input_field' // used in onChange event to collect the value
+    value='default_value' // used as initial value
+    />
+```
+### SwitchField
+### PickerField
+
+### DatePickerField
