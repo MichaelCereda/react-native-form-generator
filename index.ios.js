@@ -17,7 +17,13 @@ import {LinkField} from './fields/LinkField';
 import {PickerField} from './fields/PickerField';
 import {DatePickerField} from './fields/DatePickerField';
 
-export {InputField, SwitchField, Separator, LinkField, PickerField, DatePickerField}
+import {KeyboardAwareScrollView} from './lib/KeyboardAwareScrollView';
+
+export {InputField, SwitchField,
+        Separator, LinkField,
+        PickerField, DatePickerField,
+        KeyboardAwareScrollView
+      }
 
 export class Form extends React.Component{
   constructor(props){

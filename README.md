@@ -1,9 +1,8 @@
 ## React Native Form Generator
 Generate forms with native look and feel in a breeze
 
-![react-native-form-generator](https://cloud.githubusercontent.com/assets/107390/12443993/02022362-bf2a-11e5-8aae-e567255de8e4.gif)
+![react-native-form-generator](https://cloud.githubusercontent.com/assets/107390/12499709/edc1c298-c07a-11e5-916c-394de83ebe51.gif)
 
-sorry this gif is awful
 
 ## Features
 * Easy to use and clean, react style syntax
@@ -13,6 +12,8 @@ sorry this gif is awful
 * Inspired by tcomb, the good parts
 * Performances: just the field changed gets a setState
 * You don't need to create a 'Model' or a 'Struct' that contains your data, just create a form component (the React's way)
+
+(https://medium.com/@michaelcereda/react-native-forms-the-right-way-315802f989d6#.p9oj79vt3)
 
 ## Installation
 ```
@@ -109,3 +110,9 @@ Check the example to understand the use of the ref attribute.
 ### PickerField
 
 ### DatePickerField
+
+### KeyboardEvents
+react-native-form-generator ships with an implementation ok KeyboardAwareScrollView that make handling keyboard events a breeze.
+check here https://medium.com/@michaelcereda/react-native-forms-the-right-way-315802f989d6#.p9oj79vt3
+
+![react-native-form-generator-keyevents](https://cloud.githubusercontent.com/assets/107390/12499708/edb63838-c07a-11e5-9fe4-87979285ccc0.gif)
