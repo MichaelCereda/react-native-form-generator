@@ -5,6 +5,8 @@ Generate forms with native look and feel in a breeze
 
 
 ## Features
+* Doesn't have dependencies
+* Use your own icon pack
 * Easy to use and clean, react style syntax
 * Automatic events handling
 * Supports custom fields and styles without adding any weird syntax (just create a react component)
@@ -12,8 +14,9 @@ Generate forms with native look and feel in a breeze
 * Inspired by tcomb, the good parts
 * Performances: just the field changed gets a setState
 * You don't need to create a 'Model' or a 'Struct' that contains your data, just create a form component (the React's way)
+* Validate InputFields based on keyboardType (can be overridden using validationFunction)
 
-(https://medium.com/@michaelcereda/react-native-forms-the-right-way-315802f989d6#.p9oj79vt3)
+[My blogpost](https://medium.com/@michaelcereda/react-native-forms-the-right-way-315802f989d6#.p9oj79vt3)
 
 ## Installation
 ```
