@@ -1,6 +1,6 @@
 {
   "name": "react-native-form-generator",
-  "version": "0.6.5",
+  "version": "0.6.6",
   "description": "Generate amazing React Native forms in a breeze",
   "main": "index.ios.js",
   "scripts": {
