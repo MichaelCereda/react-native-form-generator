@@ -5,12 +5,27 @@ let { View, StyleSheet, TextInput, Text} = React;
 
 import {Field} from './Field';
 
+function validateEmail(email) {
+    var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+}
+
 export class InputField extends React.Component{
   constructor(props){
     super();
     this.state = {
       labelWidth: 0,
       value: props.value,
+    }
+    if(props.validationFunction) {
+      this.valid = props.validationFunction(value, this);
+    } else
+    if(props.keyboardType){
+      switch (props.keyboardType) {
+        case 'email':
+          this.valid = validateEmail(props.value);
+          break;
+      }
     }
   }
   handleLayoutChange(e){
@@ -28,6 +43,17 @@ export class InputField extends React.Component{
   }
 
   handleTextChange(value){
+    if(this.props.validationFunction) {
+      this.valid = this.props.validationFunction(value, this);
+    } else
+    if(this.props.keyboardType){
+      switch (this.props.keyboardType) {
+        case 'email-address':
+          this.valid = validateEmail(value);
+          break;
+      }
+    }
+
     this.setState({value:value});
     //this.props.onChange(this.props.fieldRef, value);
     if(this.props.onChange)      this.props.onChange(this.props.fieldRef, value);
@@ -47,8 +73,12 @@ export class InputField extends React.Component{
   render(){
 
     return(<Field onPress={(event)=>{this.refs.inputBox.focus();}}>
-      <View style={[formStyles.fieldContainer,  (this.props.label)?formStyles.horizontalContainer:{}, this.props.containerStyle]}
+      <View style={[formStyles.fieldContainer,  formStyles.horizontalContainer, this.props.containerStyle]}
         onLayout={this.handleLayoutChange.bind(this)}>
+        {(this.props.iconLeft)
+          ? this.props.iconLeft
+          : null
+        }
         {(this.props.label)
           ?
           <Text style={formStyles.fieldText}
@@ -57,12 +87,21 @@ export class InputField extends React.Component{
         }
         <TextInput
           ref='inputBox'
+          keyboardType = {this.props.keyboardType}
           style={[formStyles.input,  (this.props.label)?formStyles.textRight:{}, this.props.style]}
           onChangeText={this.handleTextChange.bind(this)}
           onFocus={this._scrollToInput.bind(this)}
           placeholder={this.props.placeholder}
-          value={this.state.value} width={this.state.width-this.state.labelWidth} height={44}
+          value={this.state.value}
+          width={this.state.width-this.state.labelWidth
+              -((this.props.iconRight)?this.props.iconRight.props.size:0)
+              -((this.props.iconLeft)?this.props.iconLeft.props.size:0)
+            } height={44}
           />
+        {(this.props.iconRight)
+            ? this.props.iconRight
+            : null
+          }
       </View>
 
     </Field>

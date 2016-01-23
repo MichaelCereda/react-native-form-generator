@@ -99,13 +99,42 @@ Check the example to understand the use of the ref attribute.
 ```
 
 ### InputField
+Input fields can be used to receive text, you can add icons (a react component) to the left and the right side of the field.
+
+InputField can validate values based on keyboardType property, validation is not "aggressive", just changes a value inside the class, you can access the value using the ref (ex. this.ref.example_input_field.valid).
+
+you can customize your validation function by adding a validationFunction property to the component
+
+react-native-form-generator doesn't depend on any icon library, that gives you freedom of adding any icon or react component you want.
+
+look at the example here.
+
+![react-native-form-generator-inputfield](https://cloud.githubusercontent.com/assets/107390/12533401/1f6d1e7c-c1fd-11e5-96d0-aeba9a313ab9.gif)
+
 ```javascript
   <InputField
     label='Example' // if label is present the field is rendered with the value on the left (see First Name example in the gif), otherwise its rendered with textinput at full width (second name in the gif).
     ref='example_input_field' // used in onChange event to collect the value
     value='default_value' // used as initial value
+    keyboardType = '' // undefined, 'email',
+    validationFunction = {(value)=>{return true;}}
+    iconRight={
+      <Icon name='checkmark-circled'
+        size={30}
+        style={[
+          {marginTop:7, color:"#61d062" },
+          ((self)=>{
+            //i can change the style of the component related to the attibute of example_input_field
+            if(!!(self.refs && self.refs.example_input_field)){
+              if(!self.refs.example_input_field.valid) return {color:'#d52222'}
+            }
+            }
+          )(this)]}
+        />
+    }  //React Component
     />
 ```
+
 ### SwitchField
 ### PickerField
 
