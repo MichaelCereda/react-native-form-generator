@@ -16,7 +16,7 @@ Generate forms with native look and feel in a breeze
 * You don't need to create a 'Model' or a 'Struct' that contains your data, just create a form component (the React's way)
 * Validate InputFields based on keyboardType (can be overridden using validationFunction)
 
-[My blogpost](https://medium.com/@michaelcereda/react-native-forms-the-right-way-315802f989d6#.p9oj79vt3)
+[My blogpost about React Native Form Generator](https://medium.com/@michaelcereda/react-native-forms-the-right-way-315802f989d6#.p9oj79vt3)
 
 ## Installation
 ```
@@ -26,7 +26,6 @@ Generate forms with native look and feel in a breeze
 ### ...so
 * Pull requests are very very welcome
 * All the elements are tested and stable against normal use cases (but i expect to do a lot of changes here and there)
-* Validation is coming with maximum priority
 * Slider hasn't been created
 * I have to document the code properly and do some housekeeping, i apologize in advance.
 * Android support is coming.
