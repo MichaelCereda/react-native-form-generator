@@ -16,6 +16,8 @@ export class InputField extends React.Component{
     this.state = {
       labelWidth: 0,
       value: props.value,
+      minFieldHeight: props.height || 44,
+      inputHeight: Math.max(props.height || 44)
     }
     if(props.validationFunction) {
       this.valid = props.validationFunction(value, this);
@@ -41,8 +43,10 @@ export class InputField extends React.Component{
     this.setState({labelWidth:width});
     //e.nativeEvent.layout: {x, y, width, height}}}.
   }
+  handleChange(event){
 
-  handleTextChange(value){
+    var value = event.nativeEvent.text;
+
     if(this.props.validationFunction) {
       this.valid = this.props.validationFunction(value, this);
     } else
@@ -53,12 +57,15 @@ export class InputField extends React.Component{
           break;
       }
     }
-
-    this.setState({value:value});
+    this.setState({value:value,
+      inputHeight: Math.max(this.state.minFieldHeight,
+        (event.nativeEvent.contentSize)?event.nativeEvent.contentSize.height:0)
+      });
     //this.props.onChange(this.props.fieldRef, value);
     if(this.props.onChange)      this.props.onChange(this.props.fieldRef, value);
     if(this.props.onValueChange) this.props.onValueChange(value);
   }
+
   _scrollToInput (event) {
 
     if (this.props.onFocus) {
@@ -73,7 +80,11 @@ export class InputField extends React.Component{
   render(){
 
     return(<Field onPress={(event)=>{this.refs.inputBox.focus();}}>
-      <View style={[formStyles.fieldContainer,  formStyles.horizontalContainer, this.props.containerStyle]}
+      <View style={[formStyles.fieldContainer,
+          formStyles.horizontalContainer,
+          this.props.containerStyle,
+          {height: this.state.inputHeight+1}
+        ]}
         onLayout={this.handleLayoutChange.bind(this)}>
         {(this.props.iconLeft)
           ? this.props.iconLeft
@@ -86,17 +97,25 @@ export class InputField extends React.Component{
           : null
         }
         <TextInput
+          {...this.props}
           ref='inputBox'
           keyboardType = {this.props.keyboardType}
-          style={[formStyles.input,  (this.props.label)?formStyles.textRight:{}, this.props.style]}
-          onChangeText={this.handleTextChange.bind(this)}
+          style={[formStyles.input,
+              (this.props.multiline)?formStyles.multiline:{},
+              (this.props.label)?formStyles.textRight:{},
+              this.props.style,
+              {height: this.state.inputHeight}
+            ]}
+
+          onChange={this.handleChange.bind(this)}
           onFocus={this._scrollToInput.bind(this)}
           placeholder={this.props.placeholder}
           value={this.state.value}
           width={this.state.width-this.state.labelWidth
               -((this.props.iconRight)?this.props.iconRight.props.size:0)
               -((this.props.iconLeft)?this.props.iconLeft.props.size:0)
-            } height={44}
+            }
+
           />
         {(this.props.iconRight)
             ? this.props.iconRight
@@ -122,7 +141,10 @@ let formStyles = StyleSheet.create({
   textRight:{
     textAlign: 'right'
   },
-
+  multiline:{
+    lineHeight: 32,
+    fontSize: 34/2
+  },
   separatorContainer:{
     // borderTopColor: '#C8C7CC',
     // borderTopWidth: 1,
@@ -146,7 +168,6 @@ let formStyles = StyleSheet.create({
     borderBottomColor: '#C8C7CC',
     backgroundColor: 'white',
     justifyContent: 'center',
-    height: 45
   },
   fieldText:{
     fontSize: 34/2,
