@@ -23,7 +23,7 @@ Generate forms with native look and feel in a breeze
     npm install --save react-native-form-generator
 ```
 ## Warning: I'm actively working on this project
-### ...so
+
 * Pull requests are very very welcome
 * All the elements are tested and stable against normal use cases (but i expect to do a lot of changes here and there)
 * Slider hasn't been created
@@ -136,11 +136,44 @@ look at the example here.
     }  //React Component
     />
 ```
+All the props are passed down to the underlying TextInput Component
+
+| Prop (parameters) | Description |
+| --- | --- |
+| label | Text to show in the field, if exists will move the textinput on the right, providing also the right alignment |
+| iconLeft | React component, shown on the left of the field, the component needs to have a prop size to allow the inputText to resize properly  |
+| iconRight | React component, shown on the right of the field, the component needs to have a prop size to allow the inputText to resize properly  |
 
 ### SwitchField
+
+| Prop (parameters) | Description |
+| --- | --- |
+| onValueChange(value) | triggered at every value change, returns the new value of the field|
+| value | Initial value of the component (Boolean)|
+
+
 ### PickerField
+| Prop (parameters) | Description |
+| --- | --- |
+| onValueChange(value) | triggered at every value change, returns the new value of the field|
+| value | Initial value of the component|
+| options=[{label:"test",value="Test"},...] | All the possible options, array of objects|
 
 ### DatePickerField
+Every prop is passed down to the underlying DatePickerIOS component.
+
+| Prop (parameters) | Description |
+| --- | --- |
+| onValueChange(date) | triggered at every value change, returns the new value of the field|
+| date | Initial date of the component, defaults to (new Date()) |
+
+### LinkField
+Every prop is passed down to the underlying DatePickerIOS component.
+
+| Prop (parameters) | Description |
+| --- | --- |
+| label | Text to show in the field |
+| iconLeft | React component, shown on the left of the text field  |
 
 ### KeyboardEvents
 react-native-form-generator ships with an implementation ok KeyboardAwareScrollView that make handling keyboard events a breeze.

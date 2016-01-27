@@ -32,7 +32,6 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
     _scrollToInput (event) {
 
-      debugger;
       if (this.props.onFocus) {
         let handle = React.findNodeHandle(this.refs.inputBox);
 
