@@ -30,7 +30,9 @@ export class Form extends React.Component{
     super();
     this.values = {};
     React.Children.map(props.children, (child)=> {
-
+      if (!child) {
+        return;
+      }
         if(child.ref){
           this.values[child.ref] = child.props.value;
         }
@@ -68,6 +70,10 @@ export class Form extends React.Component{
     let wrappedChildren = [];
 
     React.Children.map(this.props.children, (child, i)=> {
+      if (!child) {
+        return;
+      }
+      
       //if (child.type === this){
         wrappedChildren.push(React.cloneElement(child, {
           key: child.ref || child.type+i,
