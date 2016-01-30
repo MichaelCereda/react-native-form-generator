@@ -1,5 +1,10 @@
-## React Native Form Generator
+React Native Form Generator
+================
 Generate forms with native look and feel in a breeze
+
+[![NPM](https://nodei.co/npm/react-native-form-generator.png)](https://nodei.co/npm/react-native-form-generator/)
+
+
 
 ![react-native-form-generator](https://cloud.githubusercontent.com/assets/107390/12499709/edc1c298-c07a-11e5-916c-394de83ebe51.gif)
 
