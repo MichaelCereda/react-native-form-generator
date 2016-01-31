@@ -24,7 +24,7 @@ export class InputField extends React.Component{
     } else
     if(props.keyboardType){
       switch (props.keyboardType) {
-        case 'email':
+        case 'email-address':
           this.valid = validateEmail(props.value);
           break;
       }
