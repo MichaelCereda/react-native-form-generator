@@ -10,7 +10,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
     constructor(props){
       super();
       this.state = {
-        date: props.date || new Date(),
+        date: new Date(props.date) || new Date(),
         isPickerVisible: false
       }
 
@@ -42,7 +42,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
     render(){
       let iconName = 'ios-arrow-right';
       let iconColor = {};
-      
+
       return(<View><Field
         ref='inputBox'
         onPress={this._togglePicker.bind(this)}>
