@@ -10,7 +10,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
     constructor(props){
       super();
       this.state = {
-        date: new Date(props.date) || new Date(),
+        date: props.date? new Date(props.date) :'',
         isPickerVisible: false
       }
 
@@ -52,7 +52,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
           <Text style={formStyles.fieldText}>{this.props.placeholder}</Text>
           <View style={[formStyles.alignRight, formStyles.horizontalContainer]}>
             <Text style={formStyles.fieldValue}>{
-            this.state.date.toLocaleDateString()
+            (this.state.date)?this.state.date.toLocaleDateString():""
           }</Text>
               <Icon name={iconName}
                     size={30} {...iconColor}
@@ -64,7 +64,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
         {(this.state.isPickerVisible)?
           <DatePickerIOS
             {...this.props}
-           date={this.state.date}
+           date={this.state.date || new Date()}
 
            onDateChange={this.handleValueChange.bind(this)}
          />
