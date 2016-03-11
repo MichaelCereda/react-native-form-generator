@@ -5,7 +5,7 @@ let { View, StyleSheet, TextInput, Text, PickerIOS} = React;
 import {Field} from './Field';
 
 var PickerItemIOS = PickerIOS.Item;
-import Icon from 'react-native-vector-icons/Ionicons';
+
   export class PickerField extends React.Component{
     constructor(props){
       super();
@@ -49,9 +49,6 @@ import Icon from 'react-native-vector-icons/Ionicons';
         //this._scrollToInput(event);
     }
     render(){
-      let iconName = 'ios-arrow-right';
-      let iconColor = {};
-
       //
       // if (this.state.isMultipleSelect){
       //             let iconName = 'ios-circle-outline';
@@ -91,12 +88,15 @@ import Icon from 'react-native-vector-icons/Ionicons';
           onLayout={this.handleLayoutChange.bind(this)}>
 
           <Text style={formStyles.fieldText}>{this.props.placeholder}</Text>
-          <View style={[formStyles.alignRight, formStyles.horizontalContainer]}>
+          <View style={[formStyles.alignRight,
+              formStyles.horizontalContainer]}>
             <Text style={formStyles.fieldValue}>{(this.state.value)?this.props.options[this.state.value]:''}</Text>
-              <Icon name={iconName}
-                    size={30} {...iconColor}
-                    style={[{color: '#C7C7CC'}, this.props.iconStyle]}/>
+
           </View>
+          {(this.props.iconRight)
+              ? this.props.iconRight
+              : null
+            }
 
         </View>
         </Field>
@@ -172,6 +172,7 @@ onValueChange={this.handleValueChange.bind(this)}
         fontSize: 34/2,
         paddingLeft: 10,
         paddingRight: 10,
+        marginRight:10,
         paddingTop: 4,
         justifyContent: 'center',
 

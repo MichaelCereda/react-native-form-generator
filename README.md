@@ -179,9 +179,110 @@ Every prop is passed down to the underlying DatePickerIOS component.
 | --- | --- |
 | label | Text to show in the field |
 | iconLeft | React component, shown on the left of the text field  |
+| iconRight | React component, shown on the left of the text field (i suggest Ionicons 'ios-arrow-right' for a nice iOS effect)  |
 
 ### KeyboardEvents
 react-native-form-generator ships with an implementation ok KeyboardAwareScrollView that make handling keyboard events a breeze.
 check here https://medium.com/@michaelcereda/react-native-forms-the-right-way-315802f989d6#.p9oj79vt3
 
 ![react-native-form-generator-keyevents](https://cloud.githubusercontent.com/assets/107390/12499708/edb63838-c07a-11e5-9fe4-87979285ccc0.gif)
+
+### Custom Fields
+With react-native-form-generator is extremely easy to create your own custom fields.
+You just need to know that:
+1. Every field is a react component
+2. Evey field will receive 3 props from the Form object:
+   - fieldRef: contains the reference of the field (workaround on a react-native bug).
+   - onChange: must be called every time i want to update the values inside the form component. (required)
+   - onValueChange: can be used whenever you prefer to pass the values to another component.
+
+Example
+```javascript
+'use strict';
+import {Field} from './Field';
+
+export class SimpleInputField extends React.Component{
+  constructor(props){
+    super();
+    }
+  }
+
+  handleChange(event){
+    var value = event.nativeEvent.text;
+
+    this.setState({value:value});
+
+    // This updates values in form everytime i update
+    if(this.props.onChange)      this.props.onChange(this.props.fieldRef, value);
+    if(this.props.onValueChange) this.props.onValueChange(value);
+  }
+
+  render(){
+    return(<Field>
+        <TextInput
+          {...this.props}
+          ref='inputBox'
+
+          onChange={this.handleChange.bind(this)}
+
+          placeholder={this.props.placeholder}
+          value={this.state.value}
+          />
+    </Field>
+  )
+}
+
+}
+```
+### Wrapping fields
+You can decide to wrap every field in a component to mantain design uniformity and avoid repetitions (ex. Icons ?!).
+
+Battle tested example
+```javascript
+import {PickerField, LinkField} from 'react-native-form-generator';
+import Icon from 'react-native-vector-icons/Ionicons';
+
+let {
+  StyleSheet
+} = React;
+
+export class WrappedLinkField extends React.Component{
+  render(){
+
+    return <LinkField
+      label={this.props.label}
+      onPress={this.props.onPress}
+      iconRight={<Icon name='ios-arrow-right'
+      size={30}
+        />
+    }
+}
+
+export class WrappedPickerField extends React.Component{
+    render(){
+
+      return <PickerField
+        fieldRef = {this.props.fieldRef}
+        value={this.props.value}
+        placeholder={this.props.placeholder}
+        options={this.props.options}
+        onChange={this.props.onChange}
+        onValueChange={this.props.onValueChange}
+        iconRight={
+          <Icon name='ios-arrow-right'
+          size={30}
+
+          style={[
+            formStyles.alignRight,{color: '#C7C7CC'},
+            this.props.iconStyle]}/>
+      }
+      />
+  }
+}
+
+let formStyles = StyleSheet.create({
+    alignRight:{
+      marginTop: 7, position:'absolute', right: 10
+    }
+  });
+```

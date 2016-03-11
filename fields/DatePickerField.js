@@ -5,7 +5,7 @@ import React from 'react-native';
 let { View, StyleSheet, TextInput, Text, DatePickerIOS} = React;
 import {Field} from './Field';
 
-import Icon from 'react-native-vector-icons/Ionicons';
+
   export class DatePickerField extends React.Component{
     constructor(props){
       super();
@@ -21,7 +21,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
       this.setState(e.nativeEvent.layout);
       //e.nativeEvent.layout: {x, y, width, height}}}.
     }
-
+    
     handleValueChange(date){
 
       this.setState({date:date});
@@ -40,13 +40,12 @@ import Icon from 'react-native-vector-icons/Ionicons';
         //this._scrollToInput(event);
     }
     render(){
-      let iconName = 'ios-arrow-right';
-      let iconColor = {};
-
       return(<View><Field
         ref='inputBox'
         onPress={this._togglePicker.bind(this)}>
-        <View style={[formStyles.fieldContainer, formStyles.horizontalContainer,  this.props.containerStyle]}
+        <View style={[formStyles.fieldContainer,
+            formStyles.horizontalContainer,
+            this.props.containerStyle]}
           onLayout={this.handleLayoutChange.bind(this)}>
 
           <Text style={formStyles.fieldText}>{this.props.placeholder}</Text>
@@ -54,11 +53,13 @@ import Icon from 'react-native-vector-icons/Ionicons';
             <Text style={formStyles.fieldValue}>{
             (this.state.date)?this.state.date.toLocaleDateString():""
           }</Text>
-              <Icon name={iconName}
-                    size={30} {...iconColor}
-                    style={[{color: '#C7C7CC'}, this.props.iconStyle]}/>
-          </View>
 
+
+          </View>
+          {(this.props.iconRight)
+              ? this.props.iconRight
+              : null
+            }
         </View>
         </Field>
         {(this.state.isPickerVisible)?
@@ -127,6 +128,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
         fontSize: 34/2,
         paddingLeft: 10,
         paddingRight: 10,
+        marginRight:10,
         paddingTop: 4,
         justifyContent: 'center',
 

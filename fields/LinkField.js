@@ -4,7 +4,7 @@ import React from 'react-native';
 let { View, StyleSheet, TextInput, Text} = React;
 import {Field} from './Field';
 
-import Icon from 'react-native-vector-icons/Ionicons';
+
 export class LinkField extends React.Component{
   constructor(props){
     super();
@@ -20,10 +20,11 @@ export class LinkField extends React.Component{
 
 
   render(){
-    let iconName = 'ios-arrow-right';
-    let iconColor = {};
     return(<Field onPress={this.props.onPress}>
-      <View style={[formStyles.fieldContainer, formStyles.horizontalContainer,  this.props.containerStyle]}
+      <View style={[
+          formStyles.fieldContainer,
+          formStyles.horizontalContainer,
+          this.props.containerStyle]}
         onLayout={this.handleLayoutChange.bind(this)}>
 
         {(this.props.iconLeft)
@@ -31,11 +32,13 @@ export class LinkField extends React.Component{
           : null
         }
 
-        <Text style={formStyles.fieldText}>{this.props.label}</Text>
+        <Text style={[formStyles.fieldText, this.props.textStyle]}>{this.props.label}</Text>
 
-        <Icon name={iconName}
-          size={30} {...iconColor}
-          style={[formStyles.alignRight,{color: '#C7C7CC'}, this.props.iconStyle]}/>
+          {(this.props.iconRight)
+            ? this.props.iconRight
+            : null
+          }
+
       </View>
 
     </Field>
