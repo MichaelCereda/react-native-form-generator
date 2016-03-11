@@ -163,6 +163,7 @@ All the props are passed down to the underlying TextInput Component
 | onValueChange(value) | triggered at every value change, returns the new value of the field|
 | value | Initial value of the component|
 | options=[{label:"test",value="Test"},...] | All the possible options, array of objects|
+| iconRight | React component, shown on the left of the text field (i suggest Ionicons 'ios-arrow-right' for a nice iOS effect)  |
 
 ### DatePickerField
 Every prop is passed down to the underlying DatePickerIOS component.
@@ -171,6 +172,7 @@ Every prop is passed down to the underlying DatePickerIOS component.
 | --- | --- |
 | onValueChange(date) | triggered at every value change, returns the new value of the field|
 | date | Initial date of the component, defaults to (new Date()) |
+| iconRight | React component, shown on the left of the text field (i suggest Ionicons 'ios-arrow-right' for a nice iOS effect)  |
 
 ### LinkField
 Every prop is passed down to the underlying DatePickerIOS component.
