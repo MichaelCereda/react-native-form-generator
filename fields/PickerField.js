@@ -82,6 +82,7 @@ var PickerItemIOS = PickerIOS.Item;
       //   />);
       // });
       return(<View><Field
+        {...this.props}
         ref='inputBox'
         onPress={this._togglePicker.bind(this)}>
         <View style={[formStyles.fieldContainer, formStyles.horizontalContainer,  this.props.containerStyle]}

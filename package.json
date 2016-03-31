@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/MichaelCereda/react-native-form-generator/issues"
   },
-  "homepage": "https://github.com/MichaelCereda/react-native-form-generator#readme"
+  "homepage": "https://github.com/MichaelCereda/react-native-form-generator#readme",
+  "dependencies": {
+    "react-native-keyboard-aware-scroll-view": "0.0.6"
+  }
 }

@@ -20,7 +20,7 @@ export class LinkField extends React.Component{
 
 
   render(){
-    return(<Field onPress={this.props.onPress}>
+    return(<Field {...this.props}>
       <View style={[
           formStyles.fieldContainer,
           formStyles.horizontalContainer,

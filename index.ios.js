@@ -18,7 +18,7 @@ import {PickerField} from './fields/PickerField';
 import {DatePickerField} from './fields/DatePickerField';
 
 import {KeyboardAwareScrollView} from './lib/KeyboardAwareScrollView';
-
+//import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 export {InputField, SwitchField,
         Separator, LinkField,
         PickerField, DatePickerField,
@@ -73,7 +73,7 @@ export class Form extends React.Component{
       if (!child) {
         return;
       }
-      
+
       //if (child.type === this){
         wrappedChildren.push(React.cloneElement(child, {
           key: child.ref || child.type+i,

@@ -21,7 +21,7 @@ import {Field} from './Field';
       this.setState(e.nativeEvent.layout);
       //e.nativeEvent.layout: {x, y, width, height}}}.
     }
-    
+
     handleValueChange(date){
 
       this.setState({date:date});
@@ -41,6 +41,7 @@ import {Field} from './Field';
     }
     render(){
       return(<View><Field
+        {...this.props}
         ref='inputBox'
         onPress={this._togglePicker.bind(this)}>
         <View style={[formStyles.fieldContainer,

@@ -67,7 +67,7 @@ export class InputField extends React.Component{
   }
 
   _scrollToInput (event) {
-
+    //debugger;
     if (this.props.onFocus) {
       let handle = React.findNodeHandle(this.refs.inputBox);
       this.props.onFocus(
@@ -76,10 +76,14 @@ export class InputField extends React.Component{
       )
     }
   }
-
+  handleFieldPress(event){
+    debugger;
+    this.refs.inputBox.focus();
+  }
   render(){
 
-    return(<Field onPress={(event)=>{this.refs.inputBox.focus();}}>
+    return(<Field {...this.props}
+      onPress={this.handleFieldPress.bind(this)}>
       <View style={[formStyles.fieldContainer,
           formStyles.horizontalContainer,
           this.props.containerStyle,
