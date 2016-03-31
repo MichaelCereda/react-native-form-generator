@@ -1,6 +1,6 @@
 {
   "name": "react-native-form-generator",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "description": "Generate amazing React Native forms in a breeze",
   "main": "index.ios.js",
   "scripts": {
@@ -25,6 +25,5 @@
   },
   "homepage": "https://github.com/MichaelCereda/react-native-form-generator#readme",
   "dependencies": {
-    "react-native-keyboard-aware-scroll-view": "0.0.6"
   }
 }
