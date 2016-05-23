@@ -1,7 +1,8 @@
 'use strict';
 
 import React from 'react';
-let { View, StyleSheet, TextInput, Text} = require('react-native');
+import ReactNative from 'react-native';
+let { View, StyleSheet, TextInput, Text} = ReactNative;
 
 import {Field} from './Field';
 
@@ -69,7 +70,7 @@ export class InputField extends React.Component{
   _scrollToInput (event) {
     //debugger;
     if (this.props.onFocus) {
-      let handle = React.findNodeHandle(this.refs.inputBox);
+      let handle = ReactNative.findNodeHandle(this.refs.inputBox);
       this.props.onFocus(
         event,
         handle
