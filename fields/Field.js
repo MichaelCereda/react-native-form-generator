@@ -1,7 +1,7 @@
 'use strict';
 
-import React from 'react-native';
-let { View, StyleSheet, Text, TouchableHighlight} = React;
+import React from 'react';
+let { View, StyleSheet, Text, TouchableHighlight} = require('react-native');
 
 export class Field extends React.Component{
   render(){

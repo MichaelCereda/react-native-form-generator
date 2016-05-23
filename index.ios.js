@@ -1,6 +1,6 @@
 'use strict';
 
-import React from 'react-native';
+import React from 'react';
 let { View, TextInput,
   StyleSheet,
   StatusBarIOS,
@@ -8,7 +8,7 @@ let { View, TextInput,
   Text,
   SliderIOS,
   TouchableWithoutFeedback
-} = React;
+} = require('react-native');
 
 import {InputField} from './fields/InputField';
 import {SwitchField} from './fields/SwitchField';

@@ -1,7 +1,7 @@
 'use strict';
 
-import React from 'react-native';
-let { View, StyleSheet, TextInput, Text, PickerIOS} = React;
+import React from 'react';
+let { View, StyleSheet, TextInput, Text, PickerIOS} = require('react-native');
 import {Field} from './Field';
 
 var PickerItemIOS = PickerIOS.Item;
