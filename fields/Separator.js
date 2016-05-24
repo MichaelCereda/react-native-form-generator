@@ -1,7 +1,7 @@
 'use strict';
 
-import React from 'react-native';
-let { View, StyleSheet, Text} = React;
+import React from 'react';
+let { View, StyleSheet, Text} = require('react-native');
 
 export class Separator extends React.Component{
   render(){

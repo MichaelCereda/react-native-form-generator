@@ -1,7 +1,7 @@
 'use strict';
 
-import React from 'react-native';
-let { View, StyleSheet, Text, Switch} = React;
+import React from 'react';
+let { View, StyleSheet, Text, Switch} = require('react-native');
 
 import {Field} from './Field';
 

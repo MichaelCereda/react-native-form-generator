@@ -1,7 +1,8 @@
 'use strict';
 
-import React from 'react-native';
-let { View, StyleSheet, TextInput, Text, PickerIOS} = React;
+import React from 'react';
+import ReactNative from 'react-native';
+let { View, StyleSheet, TextInput, Text, PickerIOS} = ReactNative;
 import {Field} from './Field';
 
 var PickerItemIOS = PickerIOS.Item;
@@ -33,7 +34,7 @@ var PickerItemIOS = PickerIOS.Item;
     _scrollToInput (event) {
 
       if (this.props.onFocus) {
-        let handle = React.findNodeHandle(this.refs.inputBox);
+        let handle = ReactNative.findNodeHandle(this.refs.inputBox);
 
         this.props.onFocus(
           event,
