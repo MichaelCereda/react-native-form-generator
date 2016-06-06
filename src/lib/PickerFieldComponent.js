@@ -2,10 +2,10 @@
 
 import React from 'react';
 import ReactNative from 'react-native';
-let { View, StyleSheet, TextInput, Text, PickerIOS} = ReactNative;
+let { View, StyleSheet, TextInput, Text, Picker} = ReactNative;
 import {Field} from '../lib/Field';
 
-var PickerItemIOS = PickerIOS.Item;
+var PickerItem = Picker.Item;
 
   export class PickerField extends React.Component{
     constructor(props){
@@ -76,7 +76,7 @@ var PickerItemIOS = PickerIOS.Item;
       // value={this.state.falseSwitchIsOn} />
 
       // this.props.options.map((option, i) => {
-      //   pickerOptions.push(<PickerItemIOS
+      //   pickerOptions.push(<PickerItem
       //     key={i}
       //     value={option.value}
       //     label={option.label}
@@ -108,7 +108,7 @@ var PickerItemIOS = PickerIOS.Item;
 onValueChange={this.handleValueChange.bind(this)}
           >
           {Object.keys(this.props.options).map((value) => (
-            <PickerItemIOS
+            <PickerItem
               key={value}
               value={value}
               label={this.props.options[value]}
