@@ -1,13 +1,13 @@
 import React from 'react';
 let { View, TextInput,
   StyleSheet,
-  StatusBarIOS,
   ScrollView,
   Text,
   SliderIOS,
   TouchableWithoutFeedback
 } = require('react-native');
-import {Separator} from './fields/Separator';
+
+// import {Separator} from './fields/Separator';
 
 export class Form extends React.Component{
   constructor(props){
@@ -70,23 +70,11 @@ export class Form extends React.Component{
     }, this)
 
     return (
-      <View style={[formStyles.form, this.props.style]}>
-        <Separator label={this.props.label}/>
-
-        <View style={formStyles.fieldsWrapper}>
+      <View style={this.props.style}>
           {wrappedChildren}
-        </View>
       </View>
 
 
       );
   }
 }
-
-
-  let formStyles = StyleSheet.create({
-    form:{},
-    fieldsWrapper:{
-    },
-
-  });
