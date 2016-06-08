@@ -2,12 +2,12 @@
 
 import React from 'react';
 import ReactNative from 'react-native';
-let { View, StyleSheet, TextInput, Text, PickerIOS} = ReactNative;
+let { View, StyleSheet, TextInput, Text, Picker} = ReactNative;
 import {Field} from '../lib/Field';
 
-var PickerItemIOS = PickerIOS.Item;
+var PickerItem = Picker.Item;
 
-  export class PickerField extends React.Component{
+  export class PickerFieldComponent extends React.Component{
     constructor(props){
       super();
       this.state = {
@@ -76,7 +76,7 @@ var PickerItemIOS = PickerIOS.Item;
       // value={this.state.falseSwitchIsOn} />
 
       // this.props.options.map((option, i) => {
-      //   pickerOptions.push(<PickerItemIOS
+      //   pickerOptions.push(<PickerItem
       //     key={i}
       //     value={option.value}
       //     label={option.label}
@@ -86,7 +86,9 @@ var PickerItemIOS = PickerIOS.Item;
         {...this.props}
         ref='inputBox'
         onPress={this._togglePicker.bind(this)}>
-        <View style={[formStyles.fieldContainer, formStyles.horizontalContainer,  this.props.containerStyle]}
+        <View style={[formStyles.fieldContainer,
+                      formStyles.horizontalContainer,
+                      this.props.containerStyle]}
           onLayout={this.handleLayoutChange.bind(this)}>
 
           <Text style={formStyles.fieldText}>{this.props.placeholder}</Text>
@@ -103,19 +105,20 @@ var PickerItemIOS = PickerIOS.Item;
         </View>
         </Field>
         {(this.state.isPickerVisible)?
-        <PickerIOS ref='picker'
+        <Picker ref='picker'
           selectedValue={this.state.value}
-onValueChange={this.handleValueChange.bind(this)}
+          onValueChange={this.handleValueChange.bind(this)}
+          mode='dropdown'
           >
           {Object.keys(this.props.options).map((value) => (
-            <PickerItemIOS
+            <PickerItem
               key={value}
               value={value}
               label={this.props.options[value]}
             />
         ), this)}
 
-        </PickerIOS>
+        </Picker>
         : null
       }
 

@@ -1,5 +1,3 @@
-'use strict';
-
 import {InputField} from './src/fields/InputField';
 import {SwitchField} from './src/fields/SwitchField';
 import {Separator} from './src/fields/Separator';
