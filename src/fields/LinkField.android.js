@@ -9,6 +9,11 @@ export class LinkField extends React.Component{
   render(){
     return(<LinkComponent
        {...this.props}
+       labelStyle={formStyles.fieldText}
+       containerStyle={[
+           formStyles.fieldContainer,
+           formStyles.horizontalContainer,
+           this.props.containerStyle]}
        />
       )
 }
