@@ -5,7 +5,7 @@ let { View, StyleSheet, Text, Switch} = require('react-native');
 
 import {Field} from './Field';
 
-export class SwitchBox extends React.Component{
+export class SwitchComponent extends React.Component{
   constructor(props){
     super();
     this.state = {
@@ -46,7 +46,7 @@ export class SwitchBox extends React.Component{
 
 }
 
-SwitchBox.propTypes = {
+SwitchComponent.propTypes = {
   labelStyle: Text.propTypes.style,
   containerStyle: View.propTypes.style,
   switchStyle: Switch.propTypes.style

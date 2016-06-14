@@ -2,12 +2,12 @@
 
 import React from 'react';
 import ReactNative from 'react-native';
-import {InputBox} from '../lib/InputBox';
+import {InputComponent} from '../lib/InputComponent';
 
 let { StyleSheet} = ReactNative;
 export class InputField extends React.Component{
   render(){
-    return(<InputBox
+    return(<InputComponent
       {...this.props}
       />);
   }

@@ -5,7 +5,7 @@ let { View, StyleSheet, Text} = require('react-native');
 import {Field} from './Field';
 
 
-export class LinkBox extends React.Component{
+export class LinkComponent extends React.Component{
   constructor(props){
     super();
     this.state = {
@@ -46,7 +46,7 @@ export class LinkBox extends React.Component{
 
 }
 
-LinkBox.propTypes = {
+LinkComponent.propTypes = {
   labelStyle: Text.propTypes.style,
   containerStyle: View.propTypes.style
 }

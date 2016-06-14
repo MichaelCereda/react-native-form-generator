@@ -3,13 +3,13 @@
 import React from 'react';
 let { View, StyleSheet, Text, Switch} = require('react-native');
 
-import {SwitchBox} from '../lib/SwitchBox';
+import {SwitchComponent} from '../lib/SwitchComponent';
 
 export class SwitchField extends React.Component{
 
   render(){
 
-    return(<SwitchBox
+    return(<SwitchComponent
       {...this.props}
 
       containerStyle={[

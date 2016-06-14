@@ -11,7 +11,7 @@ function validateEmail(email) {
     return re.test(email);
 }
 
-export class InputBox extends React.Component{
+export class InputComponent extends React.Component{
   constructor(props){
     super();
     this.state = {
@@ -138,12 +138,12 @@ export class InputBox extends React.Component{
 
 }
 
-// InputBox.propTypes = {
+// InputComponent.propTypes = {
 //   multiline: React.PropTypes.bool,
 //   placeholder:React.PropTypes.string,
 // }
 
-InputBox.propTypes = {
+InputComponent.propTypes = {
   labelStyle: Text.propTypes.style,
   inputStyle: TextInput.propTypes.style,
   containerStyle: View.propTypes.style

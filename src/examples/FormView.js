@@ -1,7 +1,7 @@
 /*
 This is a view i use in a test app,
 very useful to list all the use cases
- */
+*/
 
 import React from 'react';
 
@@ -15,7 +15,7 @@ import {
 
 import { Form,
   Separator,InputField, LinkField,
-  SwitchField
+  SwitchField, PickerField
 } from 'react-native-form-generator';
 
 export class FormView extends React.Component{
@@ -31,25 +31,25 @@ export class FormView extends React.Component{
     in this example.
 
     formData = {
-      first_name:"",
-      last_name:"",
-      gender: '',
-      birthday: Date,
-      has_accepted_conditions: bool
+    first_name:"",
+    last_name:"",
+    gender: '',
+    birthday: Date,
+    has_accepted_conditions: bool
     }
-     */
+    */
     this.setState({formData:formData})
-     this.props.onFormChange && this.props.onFormChange(formData);
-   }
-   handleFormFocus(e, component){
-     console.log(e, component);
-   }
-   openTermsAndConditionsURL(){
+    this.props.onFormChange && this.props.onFormChange(formData);
+  }
+  handleFormFocus(e, component){
+    console.log(e, component);
+  }
+  openTermsAndConditionsURL(){
 
-   }
-   render(){
-      return (<ScrollView keyboardShouldPersistTaps={true} style={{paddingLeft:10,paddingRight:10, height:200}}>
-        <Form
+  }
+  render(){
+    return (<ScrollView keyboardShouldPersistTaps={true} style={{paddingLeft:10,paddingRight:10, height:200}}>
+      <Form
         ref='registrationForm'
         onFocus={this.handleFormFocus.bind(this)}
         onChange={this.handleFormChange.bind(this)}
@@ -64,30 +64,38 @@ export class FormView extends React.Component{
           helpText='this is an helpful text it can be also very very long and it will wrap' />
         <Separator />
         <LinkField label="test test test" onPress={()=>{}}/>
-          <SwitchField label='I accept Terms & Conditions'
-            ref="has_accepted_conditions"
-            helpText='Please read carefully the terms & conditions'/>
-      </Form>
-      <Text>{JSON.stringify(this.state.formData)}</Text>
-    </ScrollView>);
-  }
-}
+        <SwitchField label='I accept Terms & Conditions'
+          ref="has_accepted_conditions"
+          helpText='Please read carefully the terms & conditions'/>
+        <PickerField ref='gender'
+          label='Gender'
+          options={{
+            "": '',
+            male: 'Male',
+            female: 'Female'
+          }}/>
+        </Form>
+        <Text>{JSON.stringify(this.state.formData)}</Text>
 
-/*
-{/*<InputField ref='first_name' label='First Name' placeholder='First Name'/>
-<InputField ref='last_name' placeholder='Last Name'/>}
-{/*<PickerField ref='gender' placeholder='Gender'
+      </ScrollView>);
+    }
+  }
+
+  /*
+  {/*<InputField ref='first_name' label='First Name' placeholder='First Name'/>
+  <InputField ref='last_name' placeholder='Last Name'/>}
+  {/*<PickerField ref='gender' placeholder='Gender'
   options={{
-    male: 'Male',
-    female: 'Female'
+  male: 'Male',
+  female: 'Female'
   }}/>
-<DatePickerField ref='birthday'
+  <DatePickerField ref='birthday'
   minimumDate={new Date('1/1/1900')}
   maximumDate={new Date()} mode='date' placeholder='Birthday'/>
-<Separator label='Terms & Conditions'/>
-<LinkField label='Read terms & conditions'
+  <Separator label='Terms & Conditions'/>
+  <LinkField label='Read terms & conditions'
   onPress={this.openTermsAndConditionsURL.bind(this)}/>
-<SwitchField label='I accept Terms & Conditions' ref="has_accepted_conditions"
+  <SwitchField label='I accept Terms & Conditions' ref="has_accepted_conditions"
   helpText='Please read carefully the terms & conditions'/>}
 
- */
+  */

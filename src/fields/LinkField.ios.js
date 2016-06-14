@@ -2,12 +2,12 @@
 
 import React from 'react';
 let { View, StyleSheet, TextInput, Text} = require('react-native');
-import {LinkBox} from '../lib/LinkBox';
+import {LinkComponent} from '../lib/LinkComponent';
 
 
 export class LinkField extends React.Component{
   render(){
-    return(<LinkBox
+    return(<LinkComponent
        {...this.props}
        labelStyle={formStyles.fieldText}
 
