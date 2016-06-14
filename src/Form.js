@@ -25,17 +25,11 @@ export class Form extends React.Component{
   }
 
   handleFieldFocused(event, inputHandle){
-    if(this.props.onFocus)
-      this.props.onFocus(event, inputHandle);
+      this.props.onFocus && this.props.onFocus(event, inputHandle);
   }
   handleFieldChange(field_ref, value){
      this.values[field_ref] = value;
-    //this.setState(t);
-    if(this.props.onChange){
-
-        this.props.onChange(this.values);
-    }
-
+    this.props.onChange && this.props.onChange(this.values);
   }
   getValues(){
     return this.values;
