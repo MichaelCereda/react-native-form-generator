@@ -11,8 +11,7 @@ var PickerItem = Picker.Item;
     constructor(props){
       super();
       this.state = {
-        value: props.value,
-        isPickerVisible: false
+        value: props.value || props.label,
       }
       this.pickerMeasures = {};
     }
@@ -25,7 +24,7 @@ var PickerItem = Picker.Item;
 
     handleValueChange(value){
 
-      this.setState({value:value});
+      this.setState({value:(value && value!='')?value:this.props.label});
 
       if(this.props.onChange)      this.props.onChange(this.props.fieldRef, value);
       if(this.props.onValueChange) this.props.onValueChange(value);
@@ -95,7 +94,6 @@ var PickerItem = Picker.Item;
               {...this.props.pickerProps}
               selectedValue={this.state.value}
               onValueChange={this.handleValueChange.bind(this)}
-              mode='dropdown'
               >
               {Object.keys(this.props.options).map((value) => (
                 <PickerItem

@@ -22,13 +22,14 @@ export class PickerField extends React.Component{
      */
     return(<PickerComponent
       {...this.props}
+  
       pickerProps={{
         style:
-          [formStyles.fieldContainer,
-            formStyles.horizontalContainer,
+          [
+            formStyles.fieldContainer,
             this.props.containerStyle,
           ],
-          
+
 
       }}
       />)
@@ -39,6 +40,13 @@ export class PickerField extends React.Component{
 
 
       let formStyles = StyleSheet.create({
+        fieldContainer:{
+          borderBottomWidth: 1,
+          borderBottomColor: '#C8C7CC',
+          backgroundColor: 'white',
+          justifyContent: 'center',
+          height: 45
+        },
         form:{
 
         },
@@ -74,13 +82,7 @@ export class PickerField extends React.Component{
 
           justifyContent: 'flex-start'
         },
-        fieldContainer:{
-          borderBottomWidth: 1,
-          borderBottomColor: '#C8C7CC',
-          backgroundColor: 'white',
-          justifyContent: 'center',
-          height: 45
-        },
+
         fieldValue:{
           fontSize: 34/2,
           paddingLeft: 10,
