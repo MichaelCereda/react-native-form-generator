@@ -15,7 +15,7 @@ import {
 
 import { Form,
   Separator,InputField, LinkField,
-  SwitchField, PickerField
+  SwitchField, PickerField,DatePickerField
 } from 'react-native-form-generator';
 
 export class FormView extends React.Component{
@@ -74,6 +74,9 @@ export class FormView extends React.Component{
             male: 'Male',
             female: 'Female'
           }}/>
+          <DatePickerField ref='birthday'
+          minimumDate={new Date('1/1/1900')}
+          maximumDate={new Date()} mode='date' placeholder='Birthday'/>
         </Form>
         <Text>{JSON.stringify(this.state.formData)}</Text>
 
