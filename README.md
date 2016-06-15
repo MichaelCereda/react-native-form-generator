@@ -10,8 +10,7 @@ Generate forms with native look and feel in a breeze
 
 
 ## Features
-<<<<<<< HEAD
-=======
+
 * Android and IOS support, Yeah Baby!
 * Pleasant Defaults, totally overridable
 >>>>>>> v0.8
@@ -38,13 +37,7 @@ Generate forms with native look and feel in a breeze
 * All the elements are tested and stable against normal use cases (but i expect to do a lot of changes here and there)
 * Slider hasn't been created
 * I have to document the code properly and do some housekeeping, i apologize in advance.
-<<<<<<< HEAD
-* Android support is coming.
 
-* This project requires (for some fields) react-native-vector-icons to show icons in some fields (i will remove this dependency soon)
-
-## Example
-=======
 
 
 ## Example
@@ -215,11 +208,9 @@ You just need to know that:
 Example
 ```javascript
 'use strict';
-<<<<<<< HEAD
-import {Field} from './Field';
-=======
+
 import {Field} from '../lib/Field';
->>>>>>> v0.8
+
 
 export class SimpleInputField extends React.Component{
   constructor(props){
