@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "react-native-form-generator",
   "version": "0.7.2",
   "description": "Generate amazing React Native forms in a breeze",
@@ -10,6 +11,57 @@
     "type": "git",
     "url": "git+https://github.com/MichaelCereda/react-native-form-generator.git"
   },
+=======
+  "_args": [
+    [
+      "https://github.com/MichaelCereda/react-native-form-generator.git",
+      "/Users/michael/Projects/OpenSource/TestApp"
+    ]
+  ],
+  "_from": "git+https://github.com/MichaelCereda/react-native-form-generator.git",
+  "_id": "react-native-form-generator@0.7.2",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/react-native-form-generator",
+  "_phantomChildren": {},
+  "_requested": {
+    "hosted": {
+      "directUrl": "https://raw.githubusercontent.com/MichaelCereda/react-native-form-generator/master/package.json",
+      "gitUrl": "git://github.com/MichaelCereda/react-native-form-generator.git",
+      "httpsUrl": "git+https://github.com/MichaelCereda/react-native-form-generator.git",
+      "shortcut": "github:MichaelCereda/react-native-form-generator",
+      "ssh": "git@github.com:MichaelCereda/react-native-form-generator.git",
+      "sshUrl": "git+ssh://git@github.com/MichaelCereda/react-native-form-generator.git",
+      "type": "github"
+    },
+    "name": null,
+    "raw": "https://github.com/MichaelCereda/react-native-form-generator.git",
+    "rawSpec": "https://github.com/MichaelCereda/react-native-form-generator.git",
+    "scope": null,
+    "spec": "git+https://github.com/MichaelCereda/react-native-form-generator.git",
+    "type": "hosted"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "git+https://github.com/MichaelCereda/react-native-form-generator.git#f67d26986f3916668d0c3e9e74b66d0ed6165cba",
+  "_shasum": "cca28fd48d65a98a0a502b5cf84c3b02462ac1c9",
+  "_shrinkwrap": null,
+  "_spec": "https://github.com/MichaelCereda/react-native-form-generator.git",
+  "_where": "/Users/michael/Projects/OpenSource/TestApp",
+  "author": {
+    "name": "Michael Cereda",
+    "url": "info@michaelcereda.com"
+  },
+  "bugs": {
+    "url": "https://github.com/MichaelCereda/react-native-form-generator/issues"
+  },
+  "dependencies": {},
+  "description": "Generate amazing React Native forms in a breeze",
+  "devDependencies": {},
+  "gitHead": "f67d26986f3916668d0c3e9e74b66d0ed6165cba",
+  "homepage": "https://github.com/MichaelCereda/react-native-form-generator#readme",
+>>>>>>> v0.8
   "keywords": [
     "react",
     "native",
@@ -18,6 +70,7 @@
     "react",
     "native"
   ],
+<<<<<<< HEAD
   "author": "Michael Cereda (info@michaelcereda.com)",
   "license": "MIT",
   "bugs": {
@@ -26,4 +79,20 @@
   "homepage": "https://github.com/MichaelCereda/react-native-form-generator#readme",
   "dependencies": {
   }
+=======
+  "license": "MIT",
+  "main": "index.ios.js",
+  "name": "react-native-form-generator",
+  "optionalDependencies": {},
+  "readme": "React Native Form Generator\n================\nGenerate forms with native look and feel in a breeze\n\n[![NPM](https://nodei.co/npm/react-native-form-generator.png)](https://nodei.co/npm/react-native-form-generator/)\n\n\n\n![react-native-form-generator](https://cloud.githubusercontent.com/assets/107390/12499709/edc1c298-c07a-11e5-916c-394de83ebe51.gif)\n\n\n## Features\n* Doesn't have dependencies\n* Use your own icon pack\n* Easy to use and clean, react style syntax\n* Automatic events handling\n* Supports custom fields and styles without adding any weird syntax (just create a react component)\n* Applies by default the current OS style\n* Inspired by tcomb, the good parts\n* Performances: just the field changed gets a setState\n* You don't need to create a 'Model' or a 'Struct' that contains your data, just create a form component (the React's way)\n* Validate InputFields based on keyboardType (can be overridden using validationFunction)\n\n[My blogpost about React Native Form Generator](https://medium.com/@michaelcereda/react-native-forms-the-right-way-315802f989d6#.p9oj79vt3)\n\n## Installation\n```\n    npm install --save react-native-form-generator\n```\n## Warning: I'm actively working on this project\n\n* Pull requests are very very welcome\n* All the elements are tested and stable against normal use cases (but i expect to do a lot of changes here and there)\n* Slider hasn't been created\n* I have to document the code properly and do some housekeeping, i apologize in advance.\n* Android support is coming.\n\n* This project requires (for some fields) react-native-vector-icons to show icons in some fields (i will remove this dependency soon)\n\n## Example\nthe example below generates the form you see in the animation\n```javascript\n\nimport { Form, InputField,\n        Separator, SwitchField, LinkField ,\n        PickerField, DatePickerField\n      } from 'react-native-form-generator';\n\n export class MyCoolComponent extends React.Component{\n  handleFormChange(formData){\n    /*\n    formData will contain all the values of the form,\n    in this example.\n\n    formData = {\n      first_name:\"\",\n      last_name:\"\",\n      gender: '',\n      birthday: Date,\n      has_accepted_conditions: bool\n    }\n     */\n\n   }\n   render(){\n      <Form\n        ref='registrationForm'\n        onFocus={this.handleFormFocus.bind(this)}\n        onChange={this.handleFormChange.bind(this)}\n        label=\"Personal Information\">\n        <InputField ref='first_name' label='First Name' placeholder='First Name'/>\n        <InputField ref='last_name' placeholder='Last Name'/>\n        <PickerField ref='gender' placeholder='Gender'\n          options={{\n            male: 'Male',\n            female: 'Female'\n          }}/>\n        <DatePickerField ref='birthday'\n          minimumDate={new Date('1/1/1900')}\n          maximumDate={new Date()} mode='date' placeholder='Birthday'/>\n        <Separator label='Terms & Conditions'/>\n        <LinkField label='Read terms & conditions'     onPress={this.openTermsAndConditionsURL.bind(this)}/>\n        <SwitchField label='I accept Terms & Conditions' ref=\"has_accepted_conditions\"\n          helpText='Please read carefully the terms & conditions'/>\n      </Form>);\n  }\n}\n```\n\n## Form\nForm automatically attaches on change events so you just have to attach an handle to the onFocus attibute of Form to monitor all the changes.\n\nIt's just a wrapper that allows you to attach onFocus (used to track focus events and keyboard events) and onChange (used to track changes in every field)\n\n## Fields\n#### Common Rules\n* Every field that has to propagate its value in the form needs to have a ref attribute. (Separator and LinkField don't have a ref).\nCheck the example to understand the use of the ref attribute.\n\n\n### Separator\n```javascript\n  <Separator\n    label=\"Example\" // optional: if present it will show the text\n    />\n```\n\n### InputField\nInput fields can be used to receive text, you can add icons (a react component) to the left and the right side of the field.\n\nInputField can validate values based on keyboardType property, validation is not \"aggressive\", just changes a value inside the class, you can access the value using the ref (ex. this.ref.example_input_field.valid).\n\nyou can customize your validation function by adding a validationFunction property to the component\n\nreact-native-form-generator doesn't depend on any icon library, that gives you freedom of adding any icon or react component you want.\n\nlook at the example here.\n\n![react-native-form-generator-inputfield](https://cloud.githubusercontent.com/assets/107390/12533401/1f6d1e7c-c1fd-11e5-96d0-aeba9a313ab9.gif)\n\n```javascript\n  <InputField\n    label='Example' // if label is present the field is rendered with the value on the left (see First Name example in the gif), otherwise its rendered with textinput at full width (second name in the gif).\n    ref='example_input_field' // used in onChange event to collect the value\n    value='default_value' // used as initial value\n    keyboardType = '' // undefined, 'email',\n    validationFunction = {(value)=>{return true;}}\n    iconRight={\n      <Icon name='checkmark-circled'\n        size={30}\n        style={[\n          {marginTop:7, color:\"#61d062\" },\n          ((self)=>{\n            //i can change the style of the component related to the attibute of example_input_field\n            if(!!(self.refs && self.refs.example_input_field)){\n              if(!self.refs.example_input_field.valid) return {color:'#d52222'}\n            }\n            }\n          )(this)]}\n        />\n    }  //React Component\n    />\n```\nAll the props are passed down to the underlying TextInput Component\n\n| Prop (parameters) | Description |\n| --- | --- |\n| label | Text to show in the field, if exists will move the textinput on the right, providing also the right alignment |\n| iconLeft | React component, shown on the left of the field, the component needs to have a prop size to allow the inputText to resize properly  |\n| iconRight | React component, shown on the right of the field, the component needs to have a prop size to allow the inputText to resize properly  |\n\n### SwitchField\n\n| Prop (parameters) | Description |\n| --- | --- |\n| onValueChange(value) | triggered at every value change, returns the new value of the field|\n| value | Initial value of the component (Boolean)|\n\n\n### PickerField\n| Prop (parameters) | Description |\n| --- | --- |\n| onValueChange(value) | triggered at every value change, returns the new value of the field|\n| value | Initial value of the component|\n| options=[{label:\"test\",value=\"Test\"},...] | All the possible options, array of objects|\n| iconRight | React component, shown on the left of the text field (i suggest Ionicons 'ios-arrow-right' for a nice iOS effect)  |\n\n### DatePickerField\nEvery prop is passed down to the underlying DatePickerIOS component.\n\n| Prop (parameters) | Description |\n| --- | --- |\n| onValueChange(date) | triggered at every value change, returns the new value of the field|\n| date | Initial date of the component, defaults to (new Date()) |\n| iconRight | React component, shown on the left of the text field (i suggest Ionicons 'ios-arrow-right' for a nice iOS effect)  |\n\n### LinkField\nEvery prop is passed down to the underlying DatePickerIOS component.\n\n| Prop (parameters) | Description |\n| --- | --- |\n| label | Text to show in the field |\n| iconLeft | React component, shown on the left of the text field  |\n| iconRight | React component, shown on the left of the text field (i suggest Ionicons 'ios-arrow-right' for a nice iOS effect)  |\n\n### KeyboardEvents\nreact-native-form-generator ships with an implementation ok KeyboardAwareScrollView that make handling keyboard events a breeze.\ncheck here https://medium.com/@michaelcereda/react-native-forms-the-right-way-315802f989d6#.p9oj79vt3\n\n![react-native-form-generator-keyevents](https://cloud.githubusercontent.com/assets/107390/12499708/edb63838-c07a-11e5-9fe4-87979285ccc0.gif)\n\n### Custom Fields\nWith react-native-form-generator is extremely easy to create your own custom fields.\nYou just need to know that:\n1. Every field is a react component\n2. Evey field will receive 3 props from the Form object:\n   - fieldRef: contains the reference of the field (workaround on a react-native bug).\n   - onChange: must be called every time i want to update the values inside the form component. (required)\n   - onValueChange: can be used whenever you prefer to pass the values to another component.\n\nExample\n```javascript\n'use strict';\nimport {Field} from '../lib/Field';\n\nexport class SimpleInputField extends React.Component{\n  constructor(props){\n    super();\n    }\n  }\n\n  handleChange(event){\n    var value = event.nativeEvent.text;\n\n    this.setState({value:value});\n\n    // This updates values in form everytime i update\n    if(this.props.onChange)      this.props.onChange(this.props.fieldRef, value);\n    if(this.props.onValueChange) this.props.onValueChange(value);\n  }\n\n  render(){\n    return(<Field>\n        <TextInput\n          {...this.props}\n          ref='inputBox'\n\n          onChange={this.handleChange.bind(this)}\n\n          placeholder={this.props.placeholder}\n          value={this.state.value}\n          />\n    </Field>\n  )\n}\n\n}\n```\n### Wrapping fields\nYou can decide to wrap every field in a component to mantain design uniformity and avoid repetitions (ex. Icons ?!).\n\nBattle tested example\n```javascript\nimport {PickerField, LinkField} from 'react-native-form-generator';\nimport Icon from 'react-native-vector-icons/Ionicons';\n\nlet {\n  StyleSheet\n} = React;\n\nexport class WrappedLinkField extends React.Component{\n  render(){\n\n    return <LinkField\n      label={this.props.label}\n      onPress={this.props.onPress}\n      iconRight={<Icon name='ios-arrow-right'\n      size={30}\n        />\n    }\n}\n\nexport class WrappedPickerField extends React.Component{\n    render(){\n\n      return <PickerField\n        fieldRef = {this.props.fieldRef}\n        value={this.props.value}\n        placeholder={this.props.placeholder}\n        options={this.props.options}\n        onChange={this.props.onChange}\n        onValueChange={this.props.onValueChange}\n        iconRight={\n          <Icon name='ios-arrow-right'\n          size={30}\n\n          style={[\n            formStyles.alignRight,{color: '#C7C7CC'},\n            this.props.iconStyle]}/>\n      }\n      />\n  }\n}\n\nlet formStyles = StyleSheet.create({\n    alignRight:{\n      marginTop: 7, position:'absolute', right: 10\n    }\n  });\n```\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MichaelCereda/react-native-form-generator.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.8.0"
+>>>>>>> v0.8
 }
