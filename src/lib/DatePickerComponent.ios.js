@@ -6,155 +6,181 @@ let { View, StyleSheet, TextInput, Text, DatePickerIOS} = require('react-native'
 import {Field} from './Field';
 
 
-  export class DatePickerComponent extends React.Component{
-    constructor(props){
-      super();
-      this.state = {
-        date: props.date? new Date(props.date) :'',
-        isPickerVisible: false
-      }
-
-    }
-    handleLayoutChange(e){
-      let {x, y, width, height} = {... e.nativeEvent.layout};
-
-      this.setState(e.nativeEvent.layout);
-      //e.nativeEvent.layout: {x, y, width, height}}}.
+export class DatePickerComponent extends React.Component{
+  constructor(props){
+    super();
+    this.state = {
+      date: props.date? new Date(props.date) :'',
+      isPickerVisible: false
     }
 
-    handleValueChange(date){
+  }
+  handleLayoutChange(e){
+    let {x, y, width, height} = {... e.nativeEvent.layout};
 
-      this.setState({date:date});
+    this.setState(e.nativeEvent.layout);
+    //e.nativeEvent.layout: {x, y, width, height}}}.
+  }
 
-      if(this.props.onChange)      this.props.onChange(this.props.fieldRef, date);
-      if(this.props.onValueChange) this.props.onValueChange(date);
+  handleValueChange(date){
+
+    this.setState({date:date});
+
+    if(this.props.onChange)      this.props.onChange(this.props.fieldRef, date);
+    if(this.props.onValueChange) this.props.onValueChange(date);
+  }
+
+
+
+  //      this.refs.picker.measure(this.getPickerLayout.bind(this));
+
+
+  _togglePicker(event){
+    this.setState({isPickerVisible:!this.state.isPickerVisible});
+    //this._scrollToInput(event);
+  }
+
+  render(){
+    let valueString = '';
+    if(this.props.dateTimeFormat){
+      valueString = this.props.dateTimeFormat(this.state.date, this.props.mode);
     }
 
-
-
-//      this.refs.picker.measure(this.getPickerLayout.bind(this));
-
-
-    _togglePicker(event){
-        this.setState({isPickerVisible:!this.state.isPickerVisible});
-        //this._scrollToInput(event);
-    }
-    render(){
-      return(<View><Field
-        {...this.props}
-        ref='inputBox'
-        onPress={this._togglePicker.bind(this)}>
-        <View style={[formStyles.fieldContainer,
-            formStyles.horizontalContainer,
-            this.props.containerStyle]}
+    return(<View><Field
+      {...this.props}
+      ref='inputBox'
+      onPress={this._togglePicker.bind(this)}>
+      <View style={[formStyles.fieldContainer,
+          formStyles.horizontalContainer,
+          this.props.containerStyle]}
           onLayout={this.handleLayoutChange.bind(this)}>
 
           <Text style={formStyles.fieldText}>{this.props.placeholder}</Text>
           <View style={[formStyles.alignRight, formStyles.horizontalContainer]}>
-            <Text style={formStyles.fieldValue}>{
-            (this.state.date)?this.state.date.toLocaleDateString():""
-          }</Text>
+            <Text style={formStyles.fieldValue}>{ valueString }</Text>
 
 
           </View>
           {(this.props.iconRight)
-              ? this.props.iconRight
-              : null
-            }
+            ? this.props.iconRight
+            : null
+          }
         </View>
-        </Field>
-        {(this.state.isPickerVisible)?
-          <DatePickerIOS
-            {...this.props}
-           date={this.state.date || new Date()}
+      </Field>
+      {(this.state.isPickerVisible)?
+        <DatePickerIOS
+          {...this.props}
+          date={this.state.date || new Date()}
 
-           onDateChange={this.handleValueChange.bind(this)}
-         />
+          onDateChange={this.handleValueChange.bind(this)}
+          />
 
         : null
       }
 
     </View>
-      )
+  )
+}
+
+}
+
+DatePickerComponent.propTypes = {
+  dateTimeFormat: React.PropTypes.func
+}
+
+DatePickerComponent.defaultProps = {
+  dateTimeFormat: (date, mode)=>{
+    if(!date) return "";
+    let value='';
+    switch(mode){
+      case 'datetime':
+       value = date.toLocaleDateString()
+              + ' '
+              + date.toLocaleTimeString()
+      break;
+      case 'time':
+        value = date.toLocaleTimeString()
+      break;
+      default:
+        value = date.toLocaleDateString()
     }
-
+    return value;
   }
+};
 
+let formStyles = StyleSheet.create({
+  form:{
 
+  },
+  alignRight:{
+    marginTop: 7, position:'absolute', right: 10
+  },
+  noBorder:{
+    borderTopWidth: 0,
+    borderBottomWidth: 0
+  },
+  separatorContainer:{
+    // borderTopColor: '#C8C7CC',
+    // borderTopWidth: 1,
+    paddingTop: 35,
+    borderBottomColor: '#C8C7CC',
+    borderBottomWidth: 1,
 
-    let formStyles = StyleSheet.create({
-      form:{
+  },
+  separator:{
 
-      },
-      alignRight:{
-         marginTop: 7, position:'absolute', right: 10
-      },
-      noBorder:{
-        borderTopWidth: 0,
-        borderBottomWidth: 0
-      },
-      separatorContainer:{
-        // borderTopColor: '#C8C7CC',
-        // borderTopWidth: 1,
-        paddingTop: 35,
-        borderBottomColor: '#C8C7CC',
-        borderBottomWidth: 1,
+    paddingLeft: 10,
+    paddingRight: 10,
+    color: '#6D6D72',
+    paddingBottom: 7
 
-      },
-      separator:{
+  },
+  fieldsWrapper:{
+    // borderTopColor: '#afafaf',
+    // borderTopWidth: 1,
+  },
+  horizontalContainer:{
+    flexDirection: 'row',
 
-        paddingLeft: 10,
-        paddingRight: 10,
-        color: '#6D6D72',
-        paddingBottom: 7
+    justifyContent: 'flex-start'
+  },
+  fieldContainer:{
+    borderBottomWidth: 1,
+    borderBottomColor: '#C8C7CC',
+    backgroundColor: 'white',
+    justifyContent: 'center',
+    height: 45
+  },
+  fieldValue:{
+    fontSize: 34/2,
+    paddingLeft: 10,
+    paddingRight: 10,
+    marginRight:10,
+    paddingTop: 4,
+    justifyContent: 'center',
 
-      },
-      fieldsWrapper:{
-        // borderTopColor: '#afafaf',
-        // borderTopWidth: 1,
-      },
-      horizontalContainer:{
-        flexDirection: 'row',
+    color: '#C7C7CC'
+  },
+  fieldText:{
+    fontSize: 34/2,
+    paddingLeft: 10,
+    paddingRight: 10,
+    justifyContent: 'center',
+    lineHeight: 32
+  },
+  input:{
+    paddingLeft: 10,
+    paddingRight: 10,
 
-        justifyContent: 'flex-start'
-      },
-      fieldContainer:{
-        borderBottomWidth: 1,
-        borderBottomColor: '#C8C7CC',
-        backgroundColor: 'white',
-        justifyContent: 'center',
-        height: 45
-      },
-      fieldValue:{
-        fontSize: 34/2,
-        paddingLeft: 10,
-        paddingRight: 10,
-        marginRight:10,
-        paddingTop: 4,
-        justifyContent: 'center',
+  },
+  helpTextContainer:{
+    marginTop:9,
+    marginBottom: 25,
+    paddingLeft: 20,
+    paddingRight: 20,
 
-        color: '#C7C7CC'
-      },
-      fieldText:{
-        fontSize: 34/2,
-        paddingLeft: 10,
-        paddingRight: 10,
-        justifyContent: 'center',
-        lineHeight: 32
-      },
-      input:{
-        paddingLeft: 10,
-        paddingRight: 10,
-
-      },
-      helpTextContainer:{
-        marginTop:9,
-        marginBottom: 25,
-        paddingLeft: 20,
-        paddingRight: 20,
-
-      },
-      helpText:{
-        color: '#7a7a7a'
-      }
-    });
+  },
+  helpText:{
+    color: '#7a7a7a'
+  }
+});

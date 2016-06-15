@@ -2,11 +2,11 @@
 
 
 import React from 'react';
-let { View, StyleSheet, TextInput, Text, DatePickerAndroid} = require('react-native');
+let { View, StyleSheet, TextInput, Text, TimePickerAndroid} = require('react-native');
 import {Field} from './Field';
 
 
-  export class DatePickerComponent extends React.Component{
+  export class TimePickerComponent extends React.Component{
     constructor(props){
       super();
       this.state = {
@@ -38,11 +38,11 @@ import {Field} from './Field';
     async _togglePicker(event){
       try {
 
-        const {action, year, month, day} = await DatePickerAndroid.open({
-          date: this.props.date || new Date()
-        });
-        if (action !== DatePickerAndroid.dismissedAction) {
-          this.handleValueChange(new Date(year,month,day));
+        const {action, hour, minute} = await TimePickerAndroid.open({...this.props.options});
+        if (action !== TimePickerAndroid.dismissedAction) {
+          let date = new Date(0,0,0,hour, minute);
+
+          this.handleValueChange(date);
           // Selected year, month (0-11), day
         }
     } catch ({code, message}) {
@@ -52,6 +52,7 @@ import {Field} from './Field';
 
     }
     render(){
+      let timeValue =this.props.dateTimeFormat(this.state.date);
       return(<View><Field
         {...this.props}
         ref='inputBox'
@@ -91,17 +92,17 @@ import {Field} from './Field';
     }
 
   }
-
-  DatePickerComponent.propTypes = {
+  TimePickerComponent.propTypes = {
     dateTimeFormat: React.PropTypes.func
   }
 
-  DatePickerComponent.defaultProps = {
-    dateTimeFormat: (date, mode)=>{
+  TimePickerComponent.defaultProps = {
+    dateTimeFormat: (date)=>{
       if(!date) return "";
-      return date.toLocaleDateString()
+      return date.toLocaleTimeString();
     }
   };
+
 
     let formStyles = StyleSheet.create({
       form:{

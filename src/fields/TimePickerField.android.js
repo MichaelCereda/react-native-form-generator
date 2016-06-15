@@ -2,20 +2,20 @@
 
 import React from 'react';
 import ReactNative from 'react-native';
-let { View, StyleSheet, TextInput, Text, PickerIOS} = ReactNative;
+let { View, StyleSheet, TextInput, Text} = ReactNative;
 
 
-import {DatePickerComponent} from '../lib/DatePickerComponent';
+import {TimePickerComponent} from '../lib/TimePickerComponent';
 
-export class DatePickerField extends React.Component{
+export class TimePickerField extends React.Component{
 
   render(){
 /*
 
  */
-    return(<DatePickerComponent
+    return(<TimePickerComponent
       {...this.props}
-      
+
       labelStyle={formStyles.fieldText}
       valueStyle = {formStyles.fieldValue}
       valueContainerStyle = {[formStyles.alignRight,

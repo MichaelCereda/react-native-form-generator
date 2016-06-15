@@ -50,7 +50,8 @@ let formStyles = StyleSheet.create({
   },
   multiline:{
     lineHeight: 32,
-    fontSize: 34/2
+    fontSize: 34/2,
+    paddingBottom:10
   },
   separatorContainer:{
     // borderTopColor: '#C8C7CC',
