@@ -1,8 +1,9 @@
 React Native Form Generator
-[![Join the chat at https://gitter.im/MichaelCereda/react-native-form-generator](https://badges.gitter.im/MichaelCereda/react-native-form-generator.svg)](https://gitter.im/MichaelCereda/react-native-form-generator?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 ================
 
 Generate forms with native look and feel in a breeze
+
+[![Join the chat at https://gitter.im/MichaelCereda/react-native-form-generator](https://badges.gitter.im/MichaelCereda/react-native-form-generator.svg)](https://gitter.im/MichaelCereda/react-native-form-generator?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 [![NPM](https://nodei.co/npm/react-native-form-generator.png)](https://nodei.co/npm/react-native-form-generator/)
 
