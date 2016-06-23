@@ -14,24 +14,34 @@ function validateEmail(email) {
 export class InputComponent extends React.Component{
   constructor(props){
     super();
+
+    this.validate = this.validate.bind(this)
+
     this.state = {
       labelWidth: 0,
       value: props.value,
       minFieldHeight: props.height || 44,
       inputHeight: Math.max(props.height || 44)
     }
-    if(props.validationFunction) {
-      this.valid = props.validationFunction(value, this);
-    } else{
-      if(props.keyboardType){
-        switch (props.keyboardType) {
-          case 'email-address':
-            this.valid = validateEmail(props.value);
-            break;
-        }
+
+    this.valid = validate(props.value);)
+
+  }
+  validate(value){
+    let valid;
+
+    if(this.props.validationFunction) {
+      valid = this.props.validationFunction(value, this);
+    } else
+    if(this.props.keyboardType){
+      switch (this.props.keyboardType) {
+        case 'email-address':
+          this.valid = validateEmail(value);
+          break;
       }
     }
 
+    return valid;
   }
   handleLayoutChange(e){
     let {x, y, width, height} = {... e.nativeEvent.layout};
@@ -50,16 +60,8 @@ export class InputComponent extends React.Component{
 
     var value = event.nativeEvent.text;
 
-    if(this.props.validationFunction) {
-      this.valid = this.props.validationFunction(value, this);
-    } else
-    if(this.props.keyboardType){
-      switch (this.props.keyboardType) {
-        case 'email-address':
-          this.valid = validateEmail(value);
-          break;
-      }
-    }
+    this.valid = this.validate(value);
+
     this.setState({value:value,
       inputHeight: Math.max(this.state.minFieldHeight,
         (event.nativeEvent.contentSize && this.props.multiline)?event.nativeEvent.contentSize.height:0)
