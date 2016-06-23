@@ -15,7 +15,7 @@ export class InputComponent extends React.Component{
   constructor(props){
     super();
 
-    this.validate = this.validate.bind(this)
+    this.validate = this.validate.bind(this);
 
     this.state = {
       labelWidth: 0,
@@ -24,7 +24,7 @@ export class InputComponent extends React.Component{
       inputHeight: Math.max(props.height || 44)
     }
 
-    this.valid = validate(props.value);)
+    this.valid = validate(props.value);
 
   }
   validate(value){
