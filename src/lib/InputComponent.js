@@ -13,7 +13,7 @@ function validateEmail(email) {
 
 export class InputComponent extends React.Component{
   constructor(props){
-    super();
+    super(props);
 
     this.validate = this.validate.bind(this);
 
