@@ -15,7 +15,7 @@ export class InputComponent extends React.Component{
   constructor(props){
     super();
 
-    this.validate = this.validate.bind(this)
+    this.validate = this.validate.bind(this);
 
     this.state = {
       labelWidth: 0,
