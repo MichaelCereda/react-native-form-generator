@@ -12,24 +12,31 @@ let { View, TextInput,
 export class Form extends React.Component{
   constructor(props){
     super();
+
+    this.componentDidMount = this.componentDidMount.bind(this);
+    this.validateForm = this.validateForm.bind(this);
+
+    this.valid;
     this.values = {};
     React.Children.map(props.children, (child)=> {
       if (!child) {
         return;
       }
-        if(child.ref){
-          this.values[child.ref] = child.props.value;
-        }
-
+      if(child.ref){
+        this.values[child.ref] = child.props.value;
+      }
     });
   }
-
+  componentDidMount(){
+    this.valid = this.validateForm();
+  }
   handleFieldFocused(event, inputHandle){
       this.props.onFocus && this.props.onFocus(event, inputHandle);
   }
   handleFieldChange(field_ref, value){
-     this.values[field_ref] = value;
+    this.values[field_ref] = value;
     this.props.onChange && this.props.onChange(this.values);
+    this.valid = this.validateForm();
   }
   getValues(){
     return this.values;
@@ -43,7 +50,19 @@ export class Form extends React.Component{
 
     return res.join(' ');
   }
+  validateForm(){
+    let result = true;
 
+    Object.values(this.refs).map((child)=> {
+      if (child.valid === false ||
+        (typeof child.valid === 'undefined' && result)
+      ) {
+        result = child.valid;
+      }
+    });
+
+    return result;
+  }
   render(){
     let wrappedChildren = [];
 
@@ -56,19 +75,18 @@ export class Form extends React.Component{
         wrappedChildren.push(React.cloneElement(child, {
           key: child.ref || child.type+i,
           fieldRef : child.ref,
+          ref: child.ref,
           onFocus:this.handleFieldFocused.bind(this),
           onChange:this.handleFieldChange.bind(this)
         }
       ));
       //}
-    }, this)
+    }, this);
 
     return (
       <View style={this.props.style}>
           {wrappedChildren}
       </View>
-
-
-      );
+    );
   }
 }

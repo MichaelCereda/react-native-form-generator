@@ -4,25 +4,25 @@ import React from 'react';
 import ReactNative from 'react-native';
 import {Field} from './Field.js';
 
-let { View, StyleSheet, TextInput, Text} = ReactNative;
+const {View, StyleSheet, TextInput, Text} = ReactNative;
 
 function validateEmail(email) {
-    var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
+  var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(email);
 }
 
 export class InputComponent extends React.Component{
   constructor(props){
     super(props);
 
-    this.validate = this.validate.bind(this);
+    this.validate = this.validate.bind(this)
 
     this.state = {
       labelWidth: 0,
       value: props.value,
       minFieldHeight: props.height || 44,
       inputHeight: Math.max(props.height || 44)
-    }
+    };
 
     this.valid = this.validate(props.value);
 
@@ -134,9 +134,9 @@ export class InputComponent extends React.Component{
               : null
             }
         </View>
-    </Field>
-  )
-}
+      </Field>
+    )
+  }
 
 }
 
