@@ -35,8 +35,8 @@ export class Form extends React.Component{
   }
   handleFieldChange(field_ref, value){
     this.values[field_ref] = value;
-    this.props.onChange && this.props.onChange(this.values);
     this.valid = this.validateForm();
+    this.props.onChange && this.props.onChange(this.values);
   }
   getValues(){
     return this.values;
