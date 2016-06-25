@@ -14,7 +14,8 @@ export class Form extends React.Component{
     super();
 
     this.componentDidMount = this.componentDidMount.bind(this);
-    this.validateForm = this.validateForm.bind(this);
+    this.triggerValidation = this.triggerValidation.bind(this);
+    this.validate = this.validate.bind(this);
 
     this.valid;
     this.values = {};
@@ -28,18 +29,27 @@ export class Form extends React.Component{
     });
   }
   componentDidMount(){
-    this.valid = this.validateForm();
+    this.valid = this.validate();
   }
   handleFieldFocused(event, inputHandle){
-      this.props.onFocus && this.props.onFocus(event, inputHandle);
+    this.props.onFocus && this.props.onFocus(event, inputHandle);
   }
   handleFieldChange(field_ref, value){
     this.values[field_ref] = value;
-    this.valid = this.validateForm();
+    this.valid = this.validate();
     this.props.onChange && this.props.onChange(this.values);
   }
   getValues(){
     return this.values;
+  }
+  triggerValidation() {
+    Object.values(this.refs).map((child)=> {
+      if(child.triggerValidation) {
+        child.triggerValidation();
+      }
+    });
+
+    this.valid = this.validate();
   }
   underscoreToSpaced(str){
     var words = str.split('_');
@@ -50,7 +60,7 @@ export class Form extends React.Component{
 
     return res.join(' ');
   }
-  validateForm(){
+  validate(){
     let result = true;
 
     Object.values(this.refs).map((child)=> {

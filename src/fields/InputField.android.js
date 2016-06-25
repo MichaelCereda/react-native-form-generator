@@ -10,6 +10,7 @@ export class InputField extends React.Component{
   constructor(props){
     super(props);
 
+    this.triggerValidation = this.triggerValidation.bind(this);
     this.validate = this.validate.bind(this);
 
     this.state = {
@@ -18,18 +19,27 @@ export class InputField extends React.Component{
 
     this.valid = this.validate(props.value)
   }
-  validate(value){
-    const {fieldRef, validationFunction} = this.props;
-    let result;
+  triggerValidation() {
+    const {fieldRef} = this.props;
 
     if(this.refs[fieldRef]) {
-      result = this.refs[fieldRef].valid;
-    } else
-    if(validationFunction) {
-      result = validationFunction(value);
+      this.refs[fieldRef].triggerValidation();
     }
 
-    return result;
+    this.valid = this.validate(this.state.value);
+  }
+  validate(value){
+    const {fieldRef, validationFunction} = this.props;
+    let valid;
+
+    if(this.refs[fieldRef]) {
+      valid = this.refs[fieldRef].valid;
+    } else
+    if(validationFunction) {
+      valid = validationFunction(value);
+    }
+
+    return valid;
   }
   handleChange(ref, value) {
     this.setState({value});

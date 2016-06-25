@@ -15,6 +15,7 @@ export class InputComponent extends React.Component{
   constructor(props){
     super(props);
 
+    this.triggerValidation = this.triggerValidation.bind(this);
     this.validate = this.validate.bind(this)
 
     this.state = {
@@ -27,16 +28,18 @@ export class InputComponent extends React.Component{
     this.valid = this.validate(props.value);
 
   }
+  triggerValidation() {
+    this.valid = this.validate(this.state.value);
+  }
   validate(value){
     let valid;
-
     if(this.props.validationFunction) {
       valid = this.props.validationFunction(value, this);
     } else
     if(this.props.keyboardType){
       switch (this.props.keyboardType) {
         case 'email-address':
-          this.valid = validateEmail(value);
+          valid = validateEmail(value);
           break;
       }
     }
@@ -58,11 +61,11 @@ export class InputComponent extends React.Component{
   }
   handleChange(event){
 
-    var value = event.nativeEvent.text;
+    const value = event.nativeEvent.text;
 
     this.valid = this.validate(value);
 
-    this.setState({value:value,
+    this.setState({value,
       inputHeight: Math.max(this.state.minFieldHeight,
         (event.nativeEvent.contentSize && this.props.multiline)?event.nativeEvent.contentSize.height:0)
       });
