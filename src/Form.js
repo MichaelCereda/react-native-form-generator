@@ -13,44 +13,21 @@ export class Form extends React.Component{
   constructor(props){
     super();
 
-    this.componentDidMount = this.componentDidMount.bind(this);
-    this.triggerValidation = this.triggerValidation.bind(this);
-    this.validate = this.validate.bind(this);
-
-    this.valid;
     this.values = {};
-    React.Children.map(props.children, (child)=> {
-      if (!child) {
-        return;
-      }
-      if(child.ref){
-        this.values[child.ref] = child.props.value;
-      }
-    });
+
   }
-  componentDidMount(){
-    this.valid = this.validate();
-  }
+
   handleFieldFocused(event, inputHandle){
     this.props.onFocus && this.props.onFocus(event, inputHandle);
   }
   handleFieldChange(field_ref, value){
     this.values[field_ref] = value;
-    this.valid = this.validate();
     this.props.onChange && this.props.onChange(this.values);
   }
   getValues(){
     return this.values;
   }
-  triggerValidation() {
-    Object.values(this.refs).map((child)=> {
-      if(child.triggerValidation) {
-        child.triggerValidation();
-      }
-    });
 
-    this.valid = this.validate();
-  }
   underscoreToSpaced(str){
     var words = str.split('_');
     var res=[];
@@ -60,19 +37,7 @@ export class Form extends React.Component{
 
     return res.join(' ');
   }
-  validate(){
-    let result = true;
 
-    Object.values(this.refs).map((child)=> {
-      if (child.valid === false ||
-        (typeof child.valid === 'undefined' && result)
-      ) {
-        result = child.valid;
-      }
-    });
-
-    return result;
-  }
   render(){
     let wrappedChildren = [];
 
@@ -80,17 +45,14 @@ export class Form extends React.Component{
       if (!child) {
         return;
       }
-
-      //if (child.type === this){
         wrappedChildren.push(React.cloneElement(child, {
           key: child.ref || child.type+i,
           fieldRef : child.ref,
           ref: child.ref,
           onFocus:this.handleFieldFocused.bind(this),
-          onChange:this.handleFieldChange.bind(this)
+          onChange:this.handleFieldChange.bind(this, child.ref)
         }
       ));
-      //}
     }, this);
 
     return (

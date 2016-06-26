@@ -26,8 +26,9 @@ export class DatePickerComponent extends React.Component{
 
     this.setState({date:date});
 
-    if(this.props.onChange)      this.props.onChange(this.props.fieldRef, date);
-    if(this.props.onValueChange) this.props.onValueChange(date);
+    this.props.onChange && this.props.onChange(this.props.dateTimeFormat(date, this.props.mode));
+    this.props.onValueChange && this.props.onValueChange(date);
+
   }
 
 
@@ -68,13 +69,15 @@ export class DatePickerComponent extends React.Component{
         </View>
       </Field>
       {(this.state.isPickerVisible)?
+        <View>
         <DatePickerIOS
+
           {...this.props}
           date={this.state.date || new Date()}
 
           onDateChange={this.handleValueChange.bind(this)}
           />
-
+      </View>
         : null
       }
 

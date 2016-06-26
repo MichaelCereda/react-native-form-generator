@@ -26,7 +26,7 @@ import {Field} from './Field';
 
       this.setState({date:date});
 
-      if(this.props.onChange)      this.props.onChange(this.props.fieldRef, date);
+      if(this.props.onChange)      this.props.onChange(date);
       if(this.props.onValueChange) this.props.onValueChange(date);
     }
 
@@ -37,7 +37,6 @@ import {Field} from './Field';
 
     async _togglePicker(event){
       try {
-
         const {action, hour, minute} = await TimePickerAndroid.open({...this.props.options});
         if (action !== TimePickerAndroid.dismissedAction) {
           let date = new Date(0,0,0,hour, minute);

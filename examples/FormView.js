@@ -38,11 +38,12 @@ export class FormView extends React.Component{
     has_accepted_conditions: bool
     }
     */
+
     this.setState({formData:formData})
     this.props.onFormChange && this.props.onFormChange(formData);
   }
   handleFormFocus(e, component){
-    console.log(e, component);
+    //console.log(e, component);
   }
   openTermsAndConditionsURL(){
 
@@ -55,7 +56,40 @@ export class FormView extends React.Component{
         onChange={this.handleFormChange.bind(this)}
         label="Personal Information">
         <Separator />
-        <InputField ref='first_name' label='First Name' placeholder='First Name'/>
+        <InputField
+          ref='first_name'
+          label='First Name'
+          placeholder='First Name'
+          helpText={((self)=>{
+
+            if(Object.keys(self.refs).length !== 0){
+              if(!self.refs.registrationForm.refs.first_name.valid){
+                return self.refs.registrationForm.refs.first_name.validationErrors.join("\n");
+              }
+
+            }
+            // if(!!(self.refs && self.refs.first_name.valid)){
+            // }
+          })(this)}
+          validationFunction={[(value)=>{
+            // console.log(this.refs.first_name.valid);
+            // Check if First Name Contains Numbers
+            // debugger;
+            if(!value) return true;
+            var matches = value.match(/\d+/g);
+            if (matches != null) {
+                return "First Name can't contain numbers";
+            }
+
+            return true;
+          }, (value)=>{
+            if(!value) return true;
+            if(value.indexOf('4')!=-1){
+              return "I can't stand number 4";
+            }
+            return true;
+          }]}
+          />
         <InputField ref='last_name' placeholder='Last Name'/>
         <InputField
           multiline={true}
@@ -76,10 +110,10 @@ export class FormView extends React.Component{
           }}/>
           <DatePickerField ref='birthday'
           minimumDate={new Date('1/1/1900')}
-          maximumDate={new Date()} placeholder='Birthday'/>
+          maximumDate={new Date()}
+          placeholder='Birthday'/>
         <TimePickerField ref='alarm_time'
-          minimumDate={new Date('1/1/1900')}
-          maximumDate={new Date()} placeholder='Set Alarm'/>
+      placeholder='Set Alarm'/>
         <DatePickerField ref='meeting'
           minimumDate={new Date('1/1/1900')}
           maximumDate={new Date()} mode="datetime" placeholder='Meeting'/>
