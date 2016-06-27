@@ -9,7 +9,7 @@ export class InputField extends React.Component{
   render(){
     return(<InputComponent
       {...this.props}
-      labelStyle={formStyles.fieldText}
+      labelStyle={[formStyles.fieldText, this.props.labelStyle]}
       inputStyle={[formStyles.input,
           (this.props.multiline)?formStyles.multiline:{},
           (this.props.label)?formStyles.textRight:{},
