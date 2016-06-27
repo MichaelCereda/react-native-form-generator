@@ -7,7 +7,7 @@ import {Field} from './Field';
 
 export class SwitchComponent extends React.Component{
   constructor(props){
-    super();
+    super(props);
     this.state = {
       value: props.value,
     }

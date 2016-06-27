@@ -7,7 +7,7 @@ import {Field} from './Field';
 
 export class LinkComponent extends React.Component{
   constructor(props){
-    super();
+    super(props);
     this.state = {
     }
   }

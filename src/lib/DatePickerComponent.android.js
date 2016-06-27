@@ -8,7 +8,7 @@ import {Field} from './Field';
 
   export class DatePickerComponent extends React.Component{
     constructor(props){
-      super();
+      super(super);
       this.state = {
         date: props.date? new Date(props.date) :'',
         isPickerVisible: false

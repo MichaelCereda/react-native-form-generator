@@ -9,7 +9,7 @@ var PickerItem = Picker.Item;
 
   export class PickerComponent extends React.Component{
     constructor(props){
-      super();
+      super(props);
       this.state = {
         value: props.value,
         isPickerVisible: false
