@@ -11,11 +11,14 @@ export class InputField extends React.Component{
     this.valid = isValid;
     this.validationErrors = validationErrors;
   }
+  setValue(value){
+    this.refs.fieldComponent.setValue(value)
+  }
   render(){
     return(<InputComponent
       {...this.props}
       //onChange={this.handleChange.bind(this)}
-      //ref={this.props.fieldRef}
+      ref='fieldComponent'
       onValidation={this.handleValidation.bind(this)}
       labelStyle={formStyles.fieldText}
       inputStyle={[formStyles.input,

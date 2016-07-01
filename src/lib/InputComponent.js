@@ -29,6 +29,13 @@ export class InputComponent extends React.Component{
     };
 
   }
+
+  setValue(value){
+    this.setState({value:value});
+    if(this.props.onChange)      this.props.onChange(value);
+    if(this.props.onValueChange) this.props.onValueChange(value);
+  }
+
   triggerValidation() {
     this.setState({isValid:this.validate(this.state.value)});
   }

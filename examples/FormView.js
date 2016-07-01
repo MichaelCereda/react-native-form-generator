@@ -9,7 +9,7 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View,ScrollView, TextInput
+  View,ScrollView,TouchableHighlight
 } from 'react-native';
 
 
@@ -48,6 +48,12 @@ export class FormView extends React.Component{
   openTermsAndConditionsURL(){
 
   }
+  resetForm(){
+
+    this.refs.registrationForm.refs.first_name.setValue("");
+    this.refs.registrationForm.refs.last_name.setValue("");
+    this.refs.registrationForm.refs.other_input.setValue("");
+  }
   render(){
     return (<ScrollView keyboardShouldPersistTaps={true} style={{paddingLeft:10,paddingRight:10, height:200}}>
       <Form
@@ -72,9 +78,12 @@ export class FormView extends React.Component{
             // }
           })(this)}
           validationFunction={[(value)=>{
-            // console.log(this.refs.first_name.valid);
-            // Check if First Name Contains Numbers
-            // debugger;
+            /*
+            you can have multiple validators in a single function or an array of functions
+             */
+
+            if(value == '') return "Required";
+            //Initial state is null/undefined
             if(!value) return true;
             var matches = value.match(/\d+/g);
             if (matches != null) {
@@ -119,26 +128,12 @@ export class FormView extends React.Component{
           maximumDate={new Date()} mode="datetime" placeholder='Meeting'/>
         </Form>
         <Text>{JSON.stringify(this.state.formData)}</Text>
-
+      <TouchableHighlight
+        onPress={this.resetForm.bind(this)}
+      underlayColor='#78ac05'>
+      <View style={{
+          flex:1, alignItems:'center'
+        }}><Text style={{fontSize:19,padding:15,}}>Reset</Text></View></TouchableHighlight>
       </ScrollView>);
     }
   }
-
-  /*
-  {/*<InputField ref='first_name' label='First Name' placeholder='First Name'/>
-  <InputField ref='last_name' placeholder='Last Name'/>}
-  {/*<PickerField ref='gender' placeholder='Gender'
-  options={{
-  male: 'Male',
-  female: 'Female'
-  }}/>
-  <DatePickerField ref='birthday'
-  minimumDate={new Date('1/1/1900')}
-  maximumDate={new Date()} mode='date' placeholder='Birthday'/>
-  <Separator label='Terms & Conditions'/>
-  <LinkField label='Read terms & conditions'
-  onPress={this.openTermsAndConditionsURL.bind(this)}/>
-  <SwitchField label='I accept Terms & Conditions' ref="has_accepted_conditions"
-  helpText='Please read carefully the terms & conditions'/>}
-
-  */
