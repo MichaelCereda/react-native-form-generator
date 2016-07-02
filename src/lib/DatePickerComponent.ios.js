@@ -8,9 +8,9 @@ import {Field} from './Field';
 
 export class DatePickerComponent extends React.Component{
   constructor(props){
-    super();
+    super(props);
     this.state = {
-      date: props.date? new Date(props.date) :'',
+      date: props.date? new Date(props.date) : '',
       isPickerVisible: false
     }
 
@@ -26,7 +26,7 @@ export class DatePickerComponent extends React.Component{
 
     this.setState({date:date});
 
-    this.props.onChange && this.props.onChange(this.props.dateTimeFormat(date, this.props.mode));
+    this.props.onChange && this.props.onChange((this.props.prettyPrint)?this.props.dateTimeFormat(date, this.props.mode):date);
     this.props.onValueChange && this.props.onValueChange(date);
 
   }
@@ -42,10 +42,23 @@ export class DatePickerComponent extends React.Component{
   }
 
   render(){
-    let valueString = '';
-    if(this.props.dateTimeFormat){
-      valueString = this.props.dateTimeFormat(this.state.date, this.props.mode);
-    }
+    let { maximumDate,    minimumDate,
+          minuteInterval, mode,
+          onDateChange,   timeZoneOffsetInMinutes } = this.props;
+
+    let  valueString = this.props.dateTimeFormat(this.state.date, this.props.mode);
+
+    let datePicker= <DatePickerIOS
+      maximumDate = {maximumDate}
+      minimumDate = {minimumDate}
+      minuteInterval = {minuteInterval}
+      mode = {mode}
+      timeZoneOffsetInMinutes = {timeZoneOffsetInMinutes}
+      date = {this.state.date || new Date()}
+      onDateChange = {this.handleValueChange.bind(this)}
+    />
+
+    let pickerWrapper = React.cloneElement(this.props.pickerWrapper,{onHidePicker:()=>{this.setState({isPickerVisible:false})}},datePicker);
 
     return(<View><Field
       {...this.props}
@@ -69,16 +82,7 @@ export class DatePickerComponent extends React.Component{
         </View>
       </Field>
       {(this.state.isPickerVisible)?
-        <View>
-        <DatePickerIOS
-
-          {...this.props}
-          date={this.state.date || new Date()}
-
-          onDateChange={this.handleValueChange.bind(this)}
-          />
-      </View>
-        : null
+        pickerWrapper:null
       }
 
     </View>
@@ -88,10 +92,13 @@ export class DatePickerComponent extends React.Component{
 }
 
 DatePickerComponent.propTypes = {
-  dateTimeFormat: React.PropTypes.func
+  dateTimeFormat: React.PropTypes.func,
+  pickerWrapper: React.PropTypes.element,
+  prettyPrint: React.PropTypes.bool
 }
 
 DatePickerComponent.defaultProps = {
+  pickerWrapper: <View/>,
   dateTimeFormat: (date, mode)=>{
     if(!date) return "";
     let value='';

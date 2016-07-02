@@ -10,9 +10,6 @@ import {DatePickerComponent} from '../lib/DatePickerComponent';
 export class DatePickerField extends React.Component{
 
   render(){
-/*
-
- */
     return(<DatePickerComponent
       {...this.props}
 

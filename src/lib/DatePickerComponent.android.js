@@ -8,7 +8,7 @@ import {Field} from './Field';
 
   export class DatePickerComponent extends React.Component{
     constructor(props){
-      super(super);
+      super(props);
       this.state = {
         date: props.date? new Date(props.date) :'',
         isPickerVisible: false
@@ -26,10 +26,14 @@ import {Field} from './Field';
 
       this.setState({date:date});
 
-      if(this.props.onChange)      this.props.onChange(date);
+      if(this.props.onChange)      this.props.onChange((this.props.prettyPrint)?this.props.dateTimeFormat(date):date);
       if(this.props.onValueChange) this.props.onValueChange(date);
     }
-
+    setDate(date){
+      this.setState({value:date});
+      if(this.props.onChange)      this.props.onChange((this.props.prettyPrint)?this.props.dateTimeFormat(date):date);
+      if(this.props.onValueChange) this.props.onValueChange(date);
+    }
 
 
 //      this.refs.picker.measure(this.getPickerLayout.bind(this));
@@ -97,7 +101,7 @@ import {Field} from './Field';
   }
 
   DatePickerComponent.defaultProps = {
-    dateTimeFormat: (date, mode)=>{
+    dateTimeFormat: (date)=>{
       if(!date) return "";
       return date.toLocaleDateString()
     }

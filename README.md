@@ -24,6 +24,7 @@ Generate forms with native look and feel in a breeze
 * You don't need to create a 'Model' or a 'Struct' that contains your data, just create a form component (the React's way)
 * Validate InputFields based on keyboardType (can be overridden using validationFunction)
 * Multiple validators
+* Reset/Set Fields programmatically
 
 [My blogpost about React Native Form Generator](https://medium.com/@michaelcereda/react-native-forms-the-right-way-315802f989d6#.p9oj79vt3)
 
@@ -31,17 +32,17 @@ Generate forms with native look and feel in a breeze
 ```
     npm install --save react-native-form-generator
 ```
-## Warning: I'm actively working on this project
+## I'm actively working on this project
 
-* Pull requests are very very welcome
-* All the elements are tested and stable against normal use cases (but i expect to do a lot of changes here and there)
-* Slider hasn't been created
+* Pull requests are very very welcome. They make my day ;).
+* Master should be considered 'unstable' even if I do my best to keep it nice and safe.
+* Every release has its own branch.
+* Slider hasn't been created.
 * I have to document the code properly and do some housekeeping, i apologize in advance.
-
 
 ## Example
 
-Please check the folder _examples_.
+Please check the folder _examples_ for an always up to date use case.
 
 the example below generates the form you see in the animation
 ```javascript
@@ -186,8 +187,15 @@ It's just a wrapper that allows you to attach onFocus (used to track focus event
 
 ## Fields
 #### Common Rules
-* Every field that has to propagate its value in the form needs to have a ref attribute. (Separator and LinkField don't have a ref).
+* __Every__ field that has to propagate its value in the form __MUST__ have a ref attribute. (Separator and LinkField don't have a ref).
 Check the example to understand the use of the ref attribute.
+* All the components provided use _Field_ as wrapper in order to have the following props.
+
+| Prop (parameters) | Description |
+| --- | --- |
+| helpText | String shown as text under the component |
+| helpTextComponent | Custom component that replaces the one provided |
+| onPress | onPress method |
 
 
 ### Separator
@@ -200,11 +208,29 @@ Check the example to understand the use of the ref attribute.
 ### InputField
 Input fields can be used to receive text, you can add icons (a react component) to the left and the right side of the field.
 
-InputField can validate values based on keyboardType property, validation is not "aggressive", just changes a value inside the class, you can access the value using the ref (ex. this.ref.example_input_field.valid).
+InputField can validate values based on keyboardType property, validation is not "aggressive", just changes a value inside the class, you can access the value using the ref (ex. this.ref.example_input_field.valid).  
+InputField automatically provides the attibutes _valid_ and _validationErrors_ to guarantee full control to the developer.
 
-you can customize your validation function by adding a validationFunction property to the component
+you can customize your validation function by adding a _validationFunction_ prop to the component. _validationFunction_ supports also an array of validators.
 
-react-native-form-generator doesn't depend on any icon library, that gives you freedom of adding any icon or react component you want.
+#### Creating a validator
+Validators are simple functions have one paramenter (value) and that return true or a string containing an error.
+
+```javascript
+let workingValidator = (value)=>{
+  if(value == '') return "Required";
+  //Initial state is null/undefined
+  if(!value) return true;
+  var matches = value.match(/\d+/g);
+  if (matches != null) {
+    return "First Name can't contain numbers";
+  }
+
+  return true;
+}
+```
+
+_react-native-form-generator_ doesn't depend on any icon library, that gives you freedom of adding any icon or react component you want.
 
 look at the example here.
 
@@ -240,6 +266,7 @@ All the props are passed down to the underlying TextInput Component
 | label | Text to show in the field, if exists will move the textinput on the right, providing also the right alignment |
 | iconLeft | React component, shown on the left of the field, the component needs to have a prop size to allow the inputText to resize properly  |
 | iconRight | React component, shown on the right of the field, the component needs to have a prop size to allow the inputText to resize properly  |
+| validationFunction | Function or array of functions, used to pass custom validators to the component|
 
 ### SwitchField
 
@@ -258,13 +285,29 @@ All the props are passed down to the underlying TextInput Component
 | iconRight | React component, shown on the left of the text field (i suggest Ionicons 'ios-arrow-right' for a nice iOS effect)  |
 
 ### DatePickerField
-Every prop is passed down to the underlying DatePickerIOS component.
+Every prop is passed down to the underlying DatePickerIOS/DatePickerAndroid component.
 
 | Prop (parameters) | Description |
 | --- | --- |
 | onValueChange(date) | triggered at every value change, returns the new value of the field|
 | date | Initial date of the component, defaults to (new Date()) |
 | iconRight | React component, shown on the left of the text field (i suggest Ionicons 'ios-arrow-right' for a nice iOS effect)  |
+| dateTimeFormat | Optional, Custom date formatter |
+| pickerWrapper | Optional, Custom wrapper of the picker, check the example  |
+| prettyPrint | Boolean, if true the component returns a string formatted using dateTimeFormat, if false a Date object is returned |
+
+### TimePickerField
+Every prop is passed down to the underlying DatePickerIOS/DatePickerAndroid component.
+Mode is set to 'time'
+
+| Prop (parameters) | Description |
+| --- | --- |
+| onValueChange(date) | triggered at every value change, returns the new value of the field|
+| date | Initial date of the component, defaults to (new Date()) |
+| iconRight | React component, shown on the left of the text field (i suggest Ionicons 'ios-arrow-right' for a nice iOS effect)  |
+| dateTimeFormat | Optional, Custom date formatter |
+| pickerWrapper | Optional, Custom wrapper of the picker, check the example  |
+| prettyPrint | Boolean, if true the component returns a string formatted using dateTimeFormat, if false a Date object is returned |
 
 ### LinkField
 Every prop is passed down to the underlying DatePickerIOS component.

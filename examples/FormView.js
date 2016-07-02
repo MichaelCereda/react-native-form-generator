@@ -9,7 +9,7 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View,ScrollView,TouchableHighlight
+  View,ScrollView,TouchableHighlight, Modal
 } from 'react-native';
 
 
@@ -17,6 +17,42 @@ import { Form,
   Separator,InputField, LinkField,
   SwitchField, PickerField,DatePickerField,TimePickerField
 } from 'react-native-form-generator';
+
+class CustomModal extends React.Component{
+  handleClose(){
+    this.props.onHidePicker && this.props.onHidePicker();
+  }
+  render(){
+    return <Modal transparent={true}>
+    <View style={{padding:20, flex:1, justifyContent:'center', backgroundColor:'rgba(43, 48, 62, 0.57)'}}>
+    <View
+      style={{
+        backgroundColor:'white',
+        borderRadius: 8,
+        flexDirection:'column',
+
+    }}
+      >
+      <Text style={{
+        textAlign: 'center',
+        marginTop:10,
+        paddingTop:10,
+        paddingBottom:10,
+        fontSize:18
+      }}>A Custom Wrapper for your picker</Text>
+      {this.props.children}
+
+    <TouchableHighlight
+      onPress={this.handleClose.bind(this)}
+    underlayColor='#78ac05'>
+    <View style={{
+        flex:1, alignItems:'center'
+      }}><Text style={{fontSize:19,padding:15,}}>Close</Text></View></TouchableHighlight>
+      </View>
+      </View>
+    </Modal>
+  }
+}
 
 export class FormView extends React.Component{
   constructor(props){
@@ -55,6 +91,9 @@ export class FormView extends React.Component{
     this.refs.registrationForm.refs.other_input.setValue("");
   }
   render(){
+
+
+
     return (<ScrollView keyboardShouldPersistTaps={true} style={{paddingLeft:10,paddingRight:10, height:200}}>
       <Form
         ref='registrationForm'
@@ -99,7 +138,7 @@ export class FormView extends React.Component{
             return true;
           }]}
           />
-        <InputField ref='last_name' placeholder='Last Name'/>
+        <InputField ref='last_name' value="Default Value" placeholder='Last Name'/>
         <InputField
           multiline={true}
           ref='other_input'
@@ -122,7 +161,10 @@ export class FormView extends React.Component{
           maximumDate={new Date()}
           placeholder='Birthday'/>
         <TimePickerField ref='alarm_time'
-      placeholder='Set Alarm'/>
+      placeholder='Set Alarm'
+      prettyPrint={true}
+      pickerWrapper={<CustomModal />}
+      />
         <DatePickerField ref='meeting'
           minimumDate={new Date('1/1/1900')}
           maximumDate={new Date()} mode="datetime" placeholder='Meeting'/>

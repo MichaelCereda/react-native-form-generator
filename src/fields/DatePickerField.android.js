@@ -8,12 +8,13 @@ let { View, StyleSheet, TextInput, Text, PickerIOS} = ReactNative;
 import {DatePickerComponent} from '../lib/DatePickerComponent';
 
 export class DatePickerField extends React.Component{
-
+  setDate(date){
+    this.refs.datePickerComponent.setDate(date);
+  }
   render(){
-/*
 
- */
     return(<DatePickerComponent
+      ref='datePickerComponent'
       {...this.props}
       labelStyle={formStyles.fieldText}
       valueStyle = {formStyles.fieldValue}
