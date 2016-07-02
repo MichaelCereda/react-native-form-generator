@@ -13,13 +13,9 @@ export class DatePickerField extends React.Component{
     return(<DatePickerComponent
       {...this.props}
 
-<<<<<<< HEAD
-      labelStyle={[formStyles.fieldText,this.props.labelStyle]}
-      valueStyle = {[formStyles.fieldValue,this.props.valueStyle]}
-=======
       labelStyle={formStyles.fieldText}
       valueStyle = {formStyles.fieldValue}
->>>>>>> 0.9-dev
+
       valueContainerStyle = {[formStyles.alignRight,
           formStyles.horizontalContainer,this.props.valueContainerStyle]}
       containerStyle={[
