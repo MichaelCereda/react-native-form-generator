@@ -45,7 +45,6 @@
   },
   "dependencies": {},
   "description": "Generate amazing React Native forms in a breeze",
-  "devDependencies": {},
   "gitHead": "f67d26986f3916668d0c3e9e74b66d0ed6165cba",
   "homepage": "https://github.com/MichaelCereda/react-native-form-generator#readme",
   "keywords": [
@@ -67,7 +66,13 @@
     "url": "git+https://github.com/MichaelCereda/react-native-form-generator.git"
   },
   "scripts": {
+<<<<<<< HEAD
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "version": "0.8.2"
+=======
+    "test": "echo \"Error: no test specified\" && exit 1",
+    },
+  "version": "0.9.0"
+>>>>>>> 0.9-dev
 }

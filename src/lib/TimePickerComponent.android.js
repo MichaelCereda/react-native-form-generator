@@ -8,7 +8,7 @@ import {Field} from './Field';
 
   export class TimePickerComponent extends React.Component{
     constructor(props){
-      super();
+      super(props);
       this.state = {
         date: props.date? new Date(props.date) :'',
         isPickerVisible: false
@@ -26,18 +26,18 @@ import {Field} from './Field';
 
       this.setState({date:date});
 
-      if(this.props.onChange)      this.props.onChange(this.props.fieldRef, date);
+      if(this.props.onChange)      this.props.onChange(date);
       if(this.props.onValueChange) this.props.onValueChange(date);
     }
 
-
-
-//      this.refs.picker.measure(this.getPickerLayout.bind(this));
-
+    setTime(date){
+      this.setState({value:date});
+      if(this.props.onChange)      this.props.onChange((this.props.prettyPrint)?this.props.dateTimeFormat(date):date);
+      if(this.props.onValueChange) this.props.onValueChange(date);
+    }
 
     async _togglePicker(event){
       try {
-
         const {action, hour, minute} = await TimePickerAndroid.open({...this.props.options});
         if (action !== TimePickerAndroid.dismissedAction) {
           let date = new Date(0,0,0,hour, minute);
@@ -93,7 +93,8 @@ import {Field} from './Field';
 
   }
   TimePickerComponent.propTypes = {
-    dateTimeFormat: React.PropTypes.func
+    dateTimeFormat: React.PropTypes.func,
+    prettyPrint: React.PropTypes.bool
   }
 
   TimePickerComponent.defaultProps = {

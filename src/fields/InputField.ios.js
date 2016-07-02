@@ -4,12 +4,27 @@ import React from 'react';
 import ReactNative from 'react-native';
 import {InputComponent} from '../lib/InputComponent';
 
-let { StyleSheet} = ReactNative;
+const {StyleSheet} = ReactNative;
+
 export class InputField extends React.Component{
+  handleValidation(isValid, validationErrors){
+    this.valid = isValid;
+    this.validationErrors = validationErrors;
+  }
+  setValue(value){
+    this.refs.fieldComponent.setValue(value)
+  }
   render(){
     return(<InputComponent
       {...this.props}
+<<<<<<< HEAD
       labelStyle={[formStyles.fieldText, this.props.labelStyle]}
+=======
+      //onChange={this.handleChange.bind(this)}
+      ref='fieldComponent'
+      onValidation={this.handleValidation.bind(this)}
+      labelStyle={formStyles.fieldText}
+>>>>>>> 0.9-dev
       inputStyle={[formStyles.input,
           (this.props.multiline)?formStyles.multiline:{},
           (this.props.label)?formStyles.textRight:{},
@@ -20,8 +35,8 @@ export class InputField extends React.Component{
             this.props.containerStyle,
           ]}
       />
-  )
-}
+    )
+  }
 
 }
 

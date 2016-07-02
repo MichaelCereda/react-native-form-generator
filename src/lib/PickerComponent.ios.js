@@ -9,7 +9,7 @@ var PickerItem = Picker.Item;
 
   export class PickerComponent extends React.Component{
     constructor(props){
-      super();
+      super(props);
       this.state = {
         value: props.value,
         isPickerVisible: false
@@ -27,7 +27,7 @@ var PickerItem = Picker.Item;
 
       this.setState({value:value});
 
-      if(this.props.onChange)      this.props.onChange(this.props.fieldRef, value);
+      if(this.props.onChange)      this.props.onChange(value);
       if(this.props.onValueChange) this.props.onValueChange(value);
     }
 

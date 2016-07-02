@@ -4,34 +4,88 @@ import React from 'react';
 import ReactNative from 'react-native';
 import {Field} from './Field.js';
 
-let { View, StyleSheet, TextInput, Text} = ReactNative;
+const {View, StyleSheet, TextInput, Text} = ReactNative;
 
 function validateEmail(email) {
-    var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
+  var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  if(re.test(email)) return true;
+  return 'Invalid email';
 }
 
 export class InputComponent extends React.Component{
   constructor(props){
-    super();
+    super(props);
+
+    this.triggerValidation = this.triggerValidation.bind(this);
+    // this.validate = this.validate.bind(this)
+    this.validate(props.value);
+    this.validationErrors = [];
     this.state = {
       labelWidth: 0,
       value: props.value,
       minFieldHeight: props.height || 44,
-      inputHeight: Math.max(props.height || 44)
-    }
-    if(props.validationFunction) {
-      this.valid = props.validationFunction(value, this);
-    } else{
-      if(props.keyboardType){
-        switch (props.keyboardType) {
-          case 'email-address':
-            this.valid = validateEmail(props.value);
-            break;
+      inputHeight: Math.max(props.height || 44),
+      // isValid:
+    };
+
+  }
+
+  setValue(value){
+    this.setState({value:value});
+    if(this.props.onChange)      this.props.onChange(value);
+    if(this.props.onValueChange) this.props.onValueChange(value);
+  }
+
+  triggerValidation() {
+    this.setState({isValid:this.validate(this.state.value)});
+  }
+  validate(value){
+    let validationResult;
+    this.validationErrors = [];
+
+    if(!!this.props.validationFunction) {
+      if(this.props.validationFunction.constructor === Array){
+        /*
+        validationFunction has to return an object in case of error,
+          true in case of successful validation
+         */
+        this.props.validationFunction.map((valFn, i)=>{
+
+          let validationResult = valFn(value, this);
+          if(validationResult === true){
+            this.valid = (this.valid !== false)? validationResult : this.valid;
+          } else{
+            this.validationErrors.push(validationResult);
+            this.valid = false;
+          }
+
+        })
+      } else {
+        let validationResult = this.props.validationFunction(value, this);
+        if(validationResult === true){
+          this.valid = true;
+        } else{
+          this.validationErrors.push(validationResult);
+          this.valid = false;
         }
       }
-    }
 
+    } else
+    if(this.props.keyboardType){
+      switch (this.props.keyboardType) {
+        case 'email-address':
+          validationResult = validateEmail(value);
+          break;
+      }
+      if(validationResult === true){
+        this.valid = true;
+      } else{
+        this.validationErrors.push(validationResult);
+        this.valid = false;
+      }
+    }
+    this.props.onValidation(this.valid, this.validationErrors);
+    return this.valid;
   }
   handleLayoutChange(e){
     let {x, y, width, height} = {... e.nativeEvent.layout};
@@ -47,26 +101,19 @@ export class InputComponent extends React.Component{
     //e.nativeEvent.layout: {x, y, width, height}}}.
   }
   handleChange(event){
+    const value = event.nativeEvent.text;
 
-    var value = event.nativeEvent.text;
+    this.validate(value);
 
-    if(this.props.validationFunction) {
-      this.valid = this.props.validationFunction(value, this);
-    } else
-    if(this.props.keyboardType){
-      switch (this.props.keyboardType) {
-        case 'email-address':
-          this.valid = validateEmail(value);
-          break;
-      }
-    }
-    this.setState({value:value,
+    this.setState({value,
       inputHeight: Math.max(this.state.minFieldHeight,
-        (event.nativeEvent.contentSize && this.props.multiline)?event.nativeEvent.contentSize.height:0)
+        (event.nativeEvent.contentSize && this.props.multiline)
+          ? event.nativeEvent.contentSize.height
+          : 0)
       });
     //this.props.onChange(this.props.fieldRef, value);
-    if(this.props.onChange)      this.props.onChange(this.props.fieldRef, value);
-    if(this.props.onValueChange) this.props.onValueChange(value);
+    if(this.props.onChange)      this.props.onChange(value, this.valid);
+    if(this.props.onValueChange) this.props.onValueChange(value,this.valid);
   }
 
   _scrollToInput (event) {
@@ -88,7 +135,6 @@ export class InputComponent extends React.Component{
  //     this.props.containerStyle,
  //     {height: this.state.inputHeight+1}
  //   ]}
-
     return(<Field {...this.props}>
         <View
           onLayout={this.handleLayoutChange.bind(this)}
@@ -132,9 +178,9 @@ export class InputComponent extends React.Component{
               : null
             }
         </View>
-    </Field>
-  )
-}
+      </Field>
+    )
+  }
 
 }
 

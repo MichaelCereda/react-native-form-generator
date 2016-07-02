@@ -12,28 +12,22 @@ let { View, TextInput,
 export class Form extends React.Component{
   constructor(props){
     super();
-    this.values = {};
-    React.Children.map(props.children, (child)=> {
-      if (!child) {
-        return;
-      }
-        if(child.ref){
-          this.values[child.ref] = child.props.value;
-        }
 
-    });
+    this.values = {};
+
   }
 
   handleFieldFocused(event, inputHandle){
-      this.props.onFocus && this.props.onFocus(event, inputHandle);
+    this.props.onFocus && this.props.onFocus(event, inputHandle);
   }
   handleFieldChange(field_ref, value){
-     this.values[field_ref] = value;
+    this.values[field_ref] = value;
     this.props.onChange && this.props.onChange(this.values);
   }
   getValues(){
     return this.values;
   }
+
   underscoreToSpaced(str){
     var words = str.split('_');
     var res=[];
@@ -51,24 +45,20 @@ export class Form extends React.Component{
       if (!child) {
         return;
       }
-
-      //if (child.type === this){
         wrappedChildren.push(React.cloneElement(child, {
           key: child.ref || child.type+i,
           fieldRef : child.ref,
+          ref: child.ref,
           onFocus:this.handleFieldFocused.bind(this),
-          onChange:this.handleFieldChange.bind(this)
+          onChange:this.handleFieldChange.bind(this, child.ref)
         }
       ));
-      //}
-    }, this)
+    }, this);
 
     return (
       <View style={this.props.style}>
           {wrappedChildren}
       </View>
-
-
-      );
+    );
   }
 }
