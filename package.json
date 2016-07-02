@@ -66,13 +66,7 @@
     "url": "git+https://github.com/MichaelCereda/react-native-form-generator.git"
   },
   "scripts": {
-<<<<<<< HEAD
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "version": "0.8.2"
-=======
     "test": "echo \"Error: no test specified\" && exit 1",
     },
   "version": "0.9.0"
->>>>>>> 0.9-dev
 }
