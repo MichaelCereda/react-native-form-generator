@@ -10,6 +10,15 @@ Generate forms with native look and feel in a breeze
 
 ![react-native-form-generator](https://cloud.githubusercontent.com/assets/107390/12499709/edc1c298-c07a-11e5-916c-394de83ebe51.gif)
 
+## Components
+* Picker
+* DatePicker
+* TimePicker
+* Input
+* Link
+* Separator
+* Switch
+
 ## Features
 * Android and IOS support, Yeah Baby!
 * Pleasant Defaults, totally overridable
