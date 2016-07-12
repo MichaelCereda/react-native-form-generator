@@ -140,7 +140,7 @@ export class InputComponent extends React.Component{
           onLayout={this.handleLayoutChange.bind(this)}
           style={[
               this.props.containerStyle,
-              {height: this.state.inputHeight+1}
+              
             ]}>
           {(this.props.iconLeft)
             ? this.props.iconLeft
