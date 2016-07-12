@@ -18,6 +18,7 @@ export class InputField extends React.Component{
   render(){
     return(<InputComponent
       {...this.props}
+      ref='fieldComponent'
       onValidation={this.handleValidation.bind(this)}
       //onChange={this.handleChange.bind(this)}
       //ref={this.props.fieldRef}
