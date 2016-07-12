@@ -7,7 +7,7 @@ import {Field} from '../lib/Field';
 
 var PickerItem = Picker.Item;
 
-  export class PickerComponent extends React.Component{
+export class PickerComponent extends React.Component{
     constructor(props){
       super(props);
       this.state = {
@@ -82,6 +82,35 @@ var PickerItem = Picker.Item;
       //     label={option.label}
       //   />);
       // });
+      let picker = <Picker ref='picker'
+        {...this.props.pickerProps}
+        selectedValue={this.state.value}
+        onValueChange={this.handleValueChange.bind(this)}
+        mode='dropdown'
+        >
+        {Object.keys(this.props.options).map((value) => (
+          <PickerItem
+            key={value}
+            value={value}
+            label={this.props.options[value]}
+          />
+      ), this)}
+
+      </Picker>;
+      let pickerWrapper = React.cloneElement(this.props.pickerWrapper,{ onHidePicker:()=>{this.setState({isPickerVisible:false})}}, picker);
+      let iconLeft = this.props.iconLeft,
+          iconRight = this.props.iconRight;
+
+      if(iconLeft && iconLeft.constructor === Array){
+        iconLeft = (!this.state.isPickerVisible)
+                    ? iconLeft[0]
+                    : iconLeft[1]
+      }
+      if(iconRight && iconRight.constructor === Array){
+        iconRight = (!this.state.isPickerVisible)
+                    ? iconRight[0]
+                    : iconRight[1]
+      }
       return(<View><Field
         {...this.props}
         ref='inputBox'
@@ -89,7 +118,10 @@ var PickerItem = Picker.Item;
         <View style={
                       this.props.containerStyle}
           onLayout={this.handleLayoutChange.bind(this)}>
-
+          {(iconLeft)
+            ? iconLeft
+            : null
+          }
           <Text style={this.props.labelStyle}>{this.props.label}</Text>
           <View style={this.props.valueContainerStyle}>
             <Text style={this.props.valueStyle}>
@@ -105,23 +137,8 @@ var PickerItem = Picker.Item;
         </View>
         </Field>
         {(this.state.isPickerVisible)?
-        <Picker ref='picker'
-          {...this.props.pickerProps}
-          selectedValue={this.state.value}
-          onValueChange={this.handleValueChange.bind(this)}
-          mode='dropdown'
-          >
-          {Object.keys(this.props.options).map((value) => (
-            <PickerItem
-              key={value}
-              value={value}
-              label={this.props.options[value]}
-            />
-        ), this)}
-
-        </Picker>
-        : null
-      }
+          pickerWrapper : null
+        }
 
     </View>
       )
@@ -129,7 +146,13 @@ var PickerItem = Picker.Item;
 
   }
 
+  PickerComponent.propTypes = {
+    pickerWrapper: React.PropTypes.element,
+  }
 
+  PickerComponent.defaultProps = {
+    pickerWrapper: <View/>
+  }
 
     let formStyles = StyleSheet.create({
       form:{

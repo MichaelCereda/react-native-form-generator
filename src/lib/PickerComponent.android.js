@@ -49,38 +49,7 @@ var PickerItem = Picker.Item;
         //this._scrollToInput(event);
     }
     render(){
-      //
-      // if (this.state.isMultipleSelect){
-      //             let iconName = 'ios-circle-outline';
-      //             let iconColor = {};
-      //             if (this.state.multipleSelectValue[name]) {
-      //                 iconName = 'ios-checkmark-outline';
-      //                 iconColor = {color:'red'};
-      //             }
-      //             return (
-      //                 <TouchableWithoutFeedback
-      //                     onPress={()=>{this.checkStateChange(name)}}>
-      //                     <Icon name={iconName} size={30} {...iconColor}/>
-      //                 </TouchableWithoutFeedback>
-      //             );
-      //         }else {
-      //             return (
-      //                 <View style={styles.accessory}/>
-      //             );
-      //         }
-
-      // <Switch
-      // onValueChange={(value) => this.setState({falseSwitchIsOn: value})}
-      //
-      // value={this.state.falseSwitchIsOn} />
-
-      // this.props.options.map((option, i) => {
-      //   pickerOptions.push(<PickerItem
-      //     key={i}
-      //     value={option.value}
-      //     label={option.label}
-      //   />);
-      // });
+    
       return(<View><Field
         {...this.props}
         ref='inputBox'

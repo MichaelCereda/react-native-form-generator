@@ -159,10 +159,15 @@ export class FormView extends React.Component{
             "": '',
             male: 'Male',
             female: 'Female'
-          }}/>
+          }}
+          
+          />
           <DatePickerField ref='birthday'
           minimumDate={new Date('1/1/1900')}
           maximumDate={new Date()}
+          iconRight={[<Icon style={{alignSelf:'center', marginLeft:10}} name='ios-arrow-forward' size={30} />,
+                      <Icon style={{alignSelf:'center', marginLeft:10}} name='ios-arrow-down' size={30} />
+                      ]}
           placeholder='Birthday'/>
         <TimePickerField ref='alarm_time'
       placeholder='Set Alarm'
@@ -171,6 +176,9 @@ export class FormView extends React.Component{
       pickerWrapper={<CustomModal />}
       />
         <DatePickerField ref='meeting'
+          iconLeft={[<Icon style={{alignSelf:'center', marginLeft:10}} name='ios-flame' size={30} />,
+                     <Icon style={{alignSelf:'center', marginLeft:10, color:'red'}} name='ios-flame' size={30} />
+                  ]}
           minimumDate={new Date('1/1/1900')}
           maximumDate={new Date()} mode="datetime" placeholder='Meeting'/>
         </Form>

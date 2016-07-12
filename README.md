@@ -6,9 +6,9 @@ Generate forms with native look and feel in a breeze
 [![NPM](https://nodei.co/npm/react-native-form-generator.png)](https://nodei.co/npm/react-native-form-generator/)
 
 
+![rnformgendatetimefields](https://cloud.githubusercontent.com/assets/107390/16767512/1dfbf33c-4840-11e6-8085-1521b6d0c3ce.gif)
 
 ![react-native-form-generator](https://cloud.githubusercontent.com/assets/107390/12499709/edc1c298-c07a-11e5-916c-394de83ebe51.gif)
-
 
 ## Features
 * Android and IOS support, Yeah Baby!
@@ -25,6 +25,7 @@ Generate forms with native look and feel in a breeze
 * Validate InputFields based on keyboardType (can be overridden using validationFunction)
 * Multiple validators
 * Reset/Set Fields programmatically
+* Custom Wrapper for Picker & DatePicker Components (iOS Only)
 
 [My blogpost about React Native Form Generator](https://medium.com/@michaelcereda/react-native-forms-the-right-way-315802f989d6#.p9oj79vt3)
 
@@ -283,6 +284,7 @@ All the props are passed down to the underlying TextInput Component
 | value | Initial value of the component|
 | options=[{label:"test",value="Test"},...] | All the possible options, array of objects|
 | iconRight | React component, shown on the left of the text field (i suggest Ionicons 'ios-arrow-right' for a nice iOS effect)  |
+| pickerWrapper | Optional, Custom wrapper of the picker, check the example  |
 
 ### DatePickerField
 Every prop is passed down to the underlying DatePickerIOS/DatePickerAndroid component.

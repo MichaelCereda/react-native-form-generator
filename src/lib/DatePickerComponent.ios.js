@@ -60,6 +60,19 @@ export class DatePickerComponent extends React.Component{
 
     let pickerWrapper = React.cloneElement(this.props.pickerWrapper,{onHidePicker:()=>{this.setState({isPickerVisible:false})}},datePicker);
 
+    let iconLeft = this.props.iconLeft,
+        iconRight = this.props.iconRight;
+
+    if(iconLeft && iconLeft.constructor === Array){
+      iconLeft = (!this.state.isPickerVisible)
+                  ? iconLeft[0]
+                  : iconLeft[1]
+    }
+    if(iconRight && iconRight.constructor === Array){
+      iconRight = (!this.state.isPickerVisible)
+                  ? iconRight[0]
+                  : iconRight[1]
+    }
     return(<View><Field
       {...this.props}
       ref='inputBox'
@@ -68,21 +81,24 @@ export class DatePickerComponent extends React.Component{
           formStyles.horizontalContainer,
           this.props.containerStyle]}
           onLayout={this.handleLayoutChange.bind(this)}>
-
+          {(iconLeft)
+            ? iconLeft
+            : null
+          }
           <Text style={formStyles.fieldText}>{this.props.placeholder}</Text>
           <View style={[formStyles.alignRight, formStyles.horizontalContainer]}>
             <Text style={formStyles.fieldValue}>{ valueString }</Text>
 
-
+            {(iconRight)
+              ? iconRight
+              : null
+            }
           </View>
-          {(this.props.iconRight)
-            ? this.props.iconRight
-            : null
-          }
+
         </View>
       </Field>
       {(this.state.isPickerVisible)?
-        pickerWrapper:null
+        pickerWrapper : null
       }
 
     </View>
@@ -151,7 +167,6 @@ let formStyles = StyleSheet.create({
   },
   horizontalContainer:{
     flexDirection: 'row',
-
     justifyContent: 'flex-start'
   },
   fieldContainer:{

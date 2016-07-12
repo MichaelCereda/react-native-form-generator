@@ -56,6 +56,7 @@ import {Field} from './Field';
 
     }
     render(){
+
       return(<View><Field
         {...this.props}
         ref='inputBox'
@@ -73,10 +74,7 @@ import {Field} from './Field';
 
 
           </View>
-          {(this.props.iconRight)
-              ? this.props.iconRight
-              : null
-            }
+        
         </View>
         </Field>
         {(this.state.isPickerVisible)?
