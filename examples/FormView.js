@@ -11,7 +11,7 @@ import {
   Text,
   View,ScrollView,TouchableHighlight, Modal
 } from 'react-native';
-
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import { Form,
   Separator,InputField, LinkField,
@@ -94,7 +94,7 @@ export class FormView extends React.Component{
 
 
 
-    return (<ScrollView keyboardShouldPersistTaps={true} style={{paddingLeft:10,paddingRight:10, height:200}}>
+    return (<ScrollView keyboardShouldPersistTaps={true} style={{ height:200}}>
       <Form
         ref='registrationForm'
         onFocus={this.handleFormFocus.bind(this)}
@@ -145,7 +145,11 @@ export class FormView extends React.Component{
           placeholder='Other Input'
           helpText='this is an helpful text it can be also very very long and it will wrap' />
         <Separator />
-        <LinkField label="test test test" onPress={()=>{}}/>
+        <LinkField
+          label="LinkField, it acts like a button" onPress={()=>{}}
+          iconLeft={<Icon style={{marginLeft:10, alignSelf:'center', color:'#793315'}} name='ios-american-football-outline' size={30} />}
+          iconRight={<Icon style={{alignSelf:'center',marginRight:10, color:'#969696'}} name='ios-arrow-forward' size={30} />}
+          />
         <SwitchField label='I accept Terms & Conditions'
           ref="has_accepted_conditions"
           helpText='Please read carefully the terms & conditions'/>
@@ -162,6 +166,7 @@ export class FormView extends React.Component{
           placeholder='Birthday'/>
         <TimePickerField ref='alarm_time'
       placeholder='Set Alarm'
+      iconLeft={<Icon style={{alignSelf:'center', marginLeft:10}} name='ios-alarm' size={30} />}
       prettyPrint={true}
       pickerWrapper={<CustomModal />}
       />
