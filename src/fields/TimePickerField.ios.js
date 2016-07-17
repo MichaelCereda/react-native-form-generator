@@ -8,7 +8,9 @@ let { View, StyleSheet, TextInput, Text, PickerIOS} = ReactNative;
 import {DatePickerComponent} from '../lib/DatePickerComponent';
 
 export class TimePickerField extends React.Component{
-
+  setTime(date){
+    this.refs.datePickerComponent.setDate(date);
+  }
   render(){
 /*
 

@@ -33,7 +33,7 @@ Generate forms with native look and feel in a breeze
 * You don't need to create a 'Model' or a 'Struct' that contains your data, just create a form component (the React's way)
 * Validate InputFields based on keyboardType (can be overridden using validationFunction)
 * Multiple validators
-* Reset/Set Fields programmatically
+* Reset/Set Fields programmatically (setValue, setDate, setTime)
 * Custom Wrapper for Picker & DatePicker Components (iOS Only)
 
 [My blogpost about React Native Form Generator](https://medium.com/@michaelcereda/react-native-forms-the-right-way-315802f989d6#.p9oj79vt3)

@@ -89,6 +89,8 @@ export class FormView extends React.Component{
     this.refs.registrationForm.refs.first_name.setValue("");
     this.refs.registrationForm.refs.last_name.setValue("");
     this.refs.registrationForm.refs.other_input.setValue("");
+    this.refs.registrationForm.refs.meeting.setDate(new Date());
+    this.refs.registrationForm.refs.has_accepted_conditions.setValue(false);
   }
   render(){
 
@@ -160,7 +162,7 @@ export class FormView extends React.Component{
             male: 'Male',
             female: 'Female'
           }}
-          
+
           />
           <DatePickerField ref='birthday'
           minimumDate={new Date('1/1/1900')}

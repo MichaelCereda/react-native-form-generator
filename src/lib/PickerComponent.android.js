@@ -15,6 +15,11 @@ var PickerItem = Picker.Item;
       }
       this.pickerMeasures = {};
     }
+    setValue(value){
+      this.setState({value:value});
+      if(this.props.onChange)      this.props.onChange(value);
+      if(this.props.onValueChange) this.props.onValueChange(value);
+    }
     handleLayoutChange(e){
       let {x, y, width, height} = {... e.nativeEvent.layout};
 
@@ -49,7 +54,7 @@ var PickerItem = Picker.Item;
         //this._scrollToInput(event);
     }
     render(){
-    
+
       return(<View><Field
         {...this.props}
         ref='inputBox'

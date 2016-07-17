@@ -8,14 +8,16 @@ let { View, StyleSheet, TextInput, Text} = ReactNative;
 import {TimePickerComponent} from '../lib/TimePickerComponent';
 
 export class TimePickerField extends React.Component{
-
+  setTime(date){
+    this.refs.datePickerComponent.setTime(date);
+  }
   render(){
 /*
 
  */
     return(<TimePickerComponent
       {...this.props}
-
+      ref='fieldComponent'
       labelStyle={[formStyles.fieldText, this.props.labelStyle]}
       valueStyle = {[formStyles.fieldValue,this.props.valueStyle]}
       valueContainerStyle = {[formStyles.alignRight,

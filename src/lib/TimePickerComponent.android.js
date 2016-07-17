@@ -15,6 +15,7 @@ import {Field} from './Field';
       }
 
     }
+
     handleLayoutChange(e){
       let {x, y, width, height} = {... e.nativeEvent.layout};
 
@@ -31,7 +32,7 @@ import {Field} from './Field';
     }
 
     setTime(date){
-      this.setState({value:date});
+      this.setState({date:date});
       if(this.props.onChange)      this.props.onChange((this.props.prettyPrint)?this.props.dateTimeFormat(date):date);
       if(this.props.onValueChange) this.props.onValueChange(date);
     }

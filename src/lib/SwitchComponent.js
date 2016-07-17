@@ -18,6 +18,11 @@ export class SwitchComponent extends React.Component{
     this.setState(e.nativeEvent.layout);
     //e.nativeEvent.layout: {x, y, width, height}}}.
   }
+  setValue(value){
+    this.setState({value:value});
+    if(this.props.onChange)      this.props.onChange(value);
+    if(this.props.onValueChange) this.props.onValueChange(value);
+  }
 
   handleValueChange(value){
     // debugger;
