@@ -151,6 +151,7 @@ export class InputComponent extends React.Component{
             <Text style={this.props.labelStyle}
               onLayout={this.handleLabelLayoutChange.bind(this)}
               onPress={this.handleFieldPress.bind(this)}
+              suppressHighlighting={true}
               >{this.props.label}</Text>
             : null
           }
