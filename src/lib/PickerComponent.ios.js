@@ -52,6 +52,7 @@ export class PickerComponent extends React.Component{
     }
     _togglePicker(event){
         this.setState({isPickerVisible:!this.state.isPickerVisible});
+        this.props.onPress && this.props.onPress(event);
         //this._scrollToInput(event);
     }
     render(){

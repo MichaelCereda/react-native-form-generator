@@ -50,7 +50,7 @@ var PickerItem = Picker.Item;
 
     }
     _togglePicker(event){
-        this.setState({isPickerVisible:!this.state.isPickerVisible});
+        //this.setState({isPickerVisible:!this.state.isPickerVisible});
         //this._scrollToInput(event);
     }
     render(){
@@ -58,6 +58,7 @@ var PickerItem = Picker.Item;
       return(<View><Field
         {...this.props}
         ref='inputBox'
+        onPress={this.props.onPress}
         >
         <View style={[
                       this.props.containerStyle]}
