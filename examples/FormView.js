@@ -157,6 +157,7 @@ export class FormView extends React.Component{
           helpText='Please read carefully the terms & conditions'/>
         <PickerField ref='gender'
           label='Gender'
+          value='female'
           options={{
             "": '',
             male: 'Male',
