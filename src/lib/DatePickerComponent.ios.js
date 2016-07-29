@@ -78,6 +78,9 @@ export class DatePickerComponent extends React.Component{
                   ? iconRight[0]
                   : iconRight[1]
     }
+    let placeholderComponent = (this.props.placeholderComponent)
+                      ? this.props.placeholderComponent
+                      : <Text style={[formStyles.fieldText, this.props.placeholderStyle]}>{this.props.placeholder}</Text>
     return(<View><Field
       {...this.props}
       ref='inputBox'
@@ -90,9 +93,9 @@ export class DatePickerComponent extends React.Component{
             ? iconLeft
             : null
           }
-          <Text style={formStyles.fieldText}>{this.props.placeholder}</Text>
+          {placeholderComponent}
           <View style={[formStyles.alignRight, formStyles.horizontalContainer]}>
-            <Text style={formStyles.fieldValue}>{ valueString }</Text>
+            <Text style={[formStyles.fieldValue,this.props.valueStyle ]}>{ valueString }</Text>
 
             {(iconRight)
               ? iconRight

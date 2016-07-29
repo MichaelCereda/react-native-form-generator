@@ -15,6 +15,9 @@ export class InputField extends React.Component{
   setValue(value){
     this.refs.fieldComponent.setValue(value)
   }
+  focus(){
+    this.refs.fieldComponent.focus()
+  }
   render(){
     return(<InputComponent
       {...this.props}
