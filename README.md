@@ -33,7 +33,7 @@ Generate forms with native look and feel in a breeze
 * You don't need to create a 'Model' or a 'Struct' that contains your data, just create a form component (the React's way)
 * Validate InputFields based on keyboardType (can be overridden using validationFunction)
 * Multiple validators
-* Reset/Set Fields programmatically (setValue, setDate, setTime)
+* Reset/Set Fields programmatically (setValue, setDate, setTime, focus)
 * Custom Wrapper for Picker & DatePicker Components (iOS Only)
 
 [My blogpost about React Native Form Generator](https://medium.com/@michaelcereda/react-native-forms-the-right-way-315802f989d6#.p9oj79vt3)
@@ -278,6 +278,12 @@ All the props are passed down to the underlying TextInput Component
 | iconRight | React component, shown on the right of the field, the component needs to have a prop size to allow the inputText to resize properly  |
 | validationFunction | Function or array of functions, used to pass custom validators to the component|
 
+| ref methods | Description |
+| --- | --- |
+| setValue | Sets the value programmatically |
+| focus | Focus the textinput component |
+
+
 ### SwitchField
 
 | Prop (parameters) | Description |
@@ -306,6 +312,9 @@ Every prop is passed down to the underlying DatePickerIOS/DatePickerAndroid comp
 | dateTimeFormat | Optional, Custom date formatter |
 | pickerWrapper | Optional, Custom wrapper of the picker, check the example  |
 | prettyPrint | Boolean, if true the component returns a string formatted using dateTimeFormat, if false a Date object is returned |
+| placeholderComponent | Substitutes the component used to render the placeholder |
+| placeholderStyle | Used to style the placeholder |
+| valueStyle | Used to style the field's value |
 
 ### TimePickerField
 Every prop is passed down to the underlying DatePickerIOS/DatePickerAndroid component.
@@ -319,6 +328,9 @@ Mode is set to 'time'
 | dateTimeFormat | Optional, Custom date formatter |
 | pickerWrapper | Optional, Custom wrapper of the picker, check the example  |
 | prettyPrint | Boolean, if true the component returns a string formatted using dateTimeFormat, if false a Date object is returned |
+| placeholderComponent | Substitutes the component used to render the placeholder |
+| placeholderStyle | Used to style the placeholder |
+| valueStyle | Used to style the field's value |
 
 ### LinkField
 Every prop is passed down to the underlying DatePickerIOS component.

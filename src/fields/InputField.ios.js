@@ -14,6 +14,9 @@ export class InputField extends React.Component{
   setValue(value){
     this.refs.fieldComponent.setValue(value)
   }
+  focus(){
+    this.refs.fieldComponent.focus()
+  }
   render(){
     return(<InputComponent
       {...this.props}
@@ -95,7 +98,7 @@ let formStyles = StyleSheet.create({
     paddingRight: 10,
     justifyContent: 'center',
     lineHeight: 32,
-    
+
   },
   input:{
     paddingLeft: 10,

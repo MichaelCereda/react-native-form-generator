@@ -54,6 +54,9 @@ import {Field} from './Field';
     }
     render(){
       let timeValue =this.props.dateTimeFormat(this.state.date);
+      let placeholderComponent = (this.props.placeholderComponent)
+                        ? this.props.placeholderComponent
+                        : <Text style={[formStyles.fieldText, this.props.placeholderStyle]}>{this.props.placeholder}</Text>
       return(<View><Field
         {...this.props}
         ref='inputBox'
@@ -63,9 +66,9 @@ import {Field} from './Field';
             this.props.containerStyle]}
           onLayout={this.handleLayoutChange.bind(this)}>
 
-          <Text style={formStyles.fieldText}>{this.props.placeholder}</Text>
+          {placeholderComponent}
           <View style={[formStyles.alignRight, formStyles.horizontalContainer]}>
-            <Text style={formStyles.fieldValue}>{
+            <Text style={[formStyles.fieldValue,this.props.valueStyle ]}>{
             (this.state.date)?this.state.date.toLocaleDateString():""
           }</Text>
 

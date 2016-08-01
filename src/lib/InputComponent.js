@@ -35,7 +35,9 @@ export class InputComponent extends React.Component{
     if(this.props.onChange)      this.props.onChange(value);
     if(this.props.onValueChange) this.props.onValueChange(value);
   }
-
+  focus(){
+    this.refs.inputBox.focus()
+  }
   triggerValidation() {
     this.setState({isValid:this.validate(this.state.value)});
   }
@@ -140,7 +142,7 @@ export class InputComponent extends React.Component{
           onLayout={this.handleLayoutChange.bind(this)}
           style={[
               this.props.containerStyle,
-              
+
             ]}>
           {(this.props.iconLeft)
             ? this.props.iconLeft

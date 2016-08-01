@@ -13,6 +13,8 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
+
+
 import { Form,
   Separator,InputField, LinkField,
   SwitchField, PickerField,DatePickerField,TimePickerField
@@ -51,6 +53,14 @@ class CustomModal extends React.Component{
       </View>
       </View>
     </Modal>
+  }
+}
+
+class WrappedIcon extends React.Component {
+  render() {
+    return (
+      <Icon {...this.props} />
+    );
   }
 }
 
@@ -140,7 +150,9 @@ export class FormView extends React.Component{
             return true;
           }]}
           />
-        <InputField ref='last_name' value="Default Value" placeholder='Last Name'/>
+        <InputField
+          iconLeft={<WrappedIcon style={{marginLeft:10, alignSelf:'center', color:'#793315'}} name='ios-american-football-outline' size={30} />}
+        ref='last_name' value="Default Value" placeholder='Last Name'/>
         <InputField
           multiline={true}
           ref='other_input'
@@ -157,6 +169,7 @@ export class FormView extends React.Component{
           helpText='Please read carefully the terms & conditions'/>
         <PickerField ref='gender'
           label='Gender'
+          value='female'
           options={{
             "": '',
             male: 'Male',
@@ -188,9 +201,20 @@ export class FormView extends React.Component{
       <TouchableHighlight
         onPress={this.resetForm.bind(this)}
       underlayColor='#78ac05'>
-      <View style={{
+      <View style={[{
           flex:1, alignItems:'center'
-        }}><Text style={{fontSize:19,padding:15,}}>Reset</Text></View></TouchableHighlight>
+        }
+      ]}><Text style={{fontSize:19,padding:15,}}>Reset</Text></View></TouchableHighlight>
+      <TouchableHighlight
+      disabled={!this.state.formData.has_accepted_conditions}
+      onPress={()=>this.refs.registrationForm.refs.other_input.focus()}
+      underlayColor='#78ac05'>
+      <View style={[{
+          flex:1, alignItems:'center',
+          borderColor:(this.state.formData.has_accepted_conditions)?'#2398c9':'grey',
+          borderWidth:5
+        },
+      ]}><Text style={{fontSize:19,padding:15,}}>Focus First Name</Text></View></TouchableHighlight>
       </ScrollView>);
     }
   }
