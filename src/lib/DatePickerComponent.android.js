@@ -50,12 +50,12 @@ import {Field} from './Field';
           this.handleValueChange(new Date(year,month,day));
           // Selected year, month (0-11), day
         }
-    } catch ({code, message}) {
-      console.warn('Cannot open time picker', message);
+      } catch ({code, message}) {
+          console.warn('Cannot open time picker', message);
       }
-
-
+      this.props.onPress && this.props.onPress(event);
     }
+    
     render(){
       let placeholderComponent = (this.props.placeholderComponent)
                         ? this.props.placeholderComponent

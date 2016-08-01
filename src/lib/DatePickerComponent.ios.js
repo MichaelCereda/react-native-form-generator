@@ -44,6 +44,7 @@ export class DatePickerComponent extends React.Component{
   _togglePicker(event){
     this.setState({isPickerVisible:!this.state.isPickerVisible});
     //this._scrollToInput(event);
+    this.props.onPress && this.props.onPress(event);
   }
 
   render(){
