@@ -8,9 +8,9 @@ export class Field extends React.Component{
   render(){
     let fieldHelpText =
       this.props.helpTextComponent
-      || (this.props.helpText)
+      || ((this.props.helpText)
           ? <HelpText text={this.props.helpText} />
-          : null;
+          : null);
 
     if(this.props.onPress){
       return <TouchableHighlight onPress={this.props.onPress}>

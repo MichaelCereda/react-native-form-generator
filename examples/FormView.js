@@ -158,6 +158,11 @@ export class FormView extends React.Component{
           ref='other_input'
           placeholder='Other Input'
           helpText='this is an helpful text it can be also very very long and it will wrap' />
+          <InputField
+            ref='email'
+            keyboardType='email-address'
+            placeholder='Email fields'
+            helpTextComponent={<Text>Custom Help Text Component</Text>} />
         <Separator />
         <LinkField
           label="LinkField, it acts like a button" onPress={()=>{}}

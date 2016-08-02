@@ -251,7 +251,7 @@ look at the example here.
     label='Example' // if label is present the field is rendered with the value on the left (see First Name example in the gif), otherwise its rendered with textinput at full width (second name in the gif).
     ref='example_input_field' // used in onChange event to collect the value
     value='default_value' // used as initial value
-    keyboardType = '' // undefined, 'email',
+    keyboardType = '' // undefined, 'email-address',
     validationFunction = {(value)=>{return true;}}
     iconRight={
       <Icon name='checkmark-circled'
@@ -277,6 +277,7 @@ All the props are passed down to the underlying TextInput Component
 | iconLeft | React component, shown on the left of the field, the component needs to have a prop size to allow the inputText to resize properly  |
 | iconRight | React component, shown on the right of the field, the component needs to have a prop size to allow the inputText to resize properly  |
 | validationFunction | Function or array of functions, used to pass custom validators to the component|
+| keyboardType | possible values: __underfined__, __email-address__|
 
 | ref methods | Description |
 | --- | --- |
