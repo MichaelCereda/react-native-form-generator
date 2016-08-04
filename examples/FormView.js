@@ -160,6 +160,7 @@ export class FormView extends React.Component{
           helpText='this is an helpful text it can be also very very long and it will wrap' />
           <InputField
             ref='email'
+            value='test@test.it'
             keyboardType='email-address'
             placeholder='Email fields'
             helpTextComponent={<Text>Custom Help Text Component</Text>} />

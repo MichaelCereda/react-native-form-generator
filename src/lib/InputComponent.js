@@ -27,7 +27,15 @@ export class InputComponent extends React.Component{
       inputHeight: Math.max(props.height || 44),
       // isValid:
     };
-
+    this.setValue = this.setValue.bind(this)
+    this.focus = this.focus.bind(this)
+    this.triggerValidation = this.triggerValidation.bind(this)
+    this.validate = this.validate.bind(this)
+    this.handleLayoutChange = this.handleLayoutChange.bind(this)
+    this.handleLabelLayoutChange = this.handleLabelLayoutChange.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+    this.handleFieldPress = this.handleFieldPress.bind(this)
+    this._scrollToInput = this._scrollToInput.bind(this)
   }
 
   setValue(value){
@@ -139,7 +147,7 @@ export class InputComponent extends React.Component{
  //   ]}
     return(<Field {...this.props}>
         <View
-          onLayout={this.handleLayoutChange.bind(this)}
+          onLayout={this.handleLayoutChange}
           style={[
               this.props.containerStyle,
 
@@ -151,8 +159,8 @@ export class InputComponent extends React.Component{
           {(this.props.label)
             ?
             <Text style={this.props.labelStyle}
-              onLayout={this.handleLabelLayoutChange.bind(this)}
-              onPress={this.handleFieldPress.bind(this)}
+              onLayout={this.handleLabelLayoutChange}
+              onPress={this.handleFieldPress}
               suppressHighlighting={true}
               >{this.props.label}</Text>
             : null
@@ -166,8 +174,8 @@ export class InputComponent extends React.Component{
                 {height: this.state.inputHeight}
               ]}
 
-            onChange={this.handleChange.bind(this)}
-            onFocus={this._scrollToInput.bind(this)}
+            onChange={this.handleChange}
+            onFocus={this._scrollToInput}
             placeholder={this.props.placeholder}
             value={this.state.value}
             width={this.state.width-this.state.labelWidth
