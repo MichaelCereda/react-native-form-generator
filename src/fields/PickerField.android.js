@@ -20,6 +20,7 @@ export class PickerField extends React.Component{
           [
             formStyles.fieldContainer,
             this.props.containerStyle,
+            this.props.pickerStyle,
           ],
 
 
