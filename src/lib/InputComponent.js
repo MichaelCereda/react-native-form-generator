@@ -98,16 +98,20 @@ export class InputComponent extends React.Component{
     return this.valid;
   }
   handleLayoutChange(e){
-    // let {x, y, width, height} = {... e.nativeEvent.layout};
+	  if (Platform.OS === 'ios') {
+		  let {x, y, width, height} = {... e.nativeEvent.layout};
 
-    // this.setState(e.nativeEvent.layout);
+	      this.setState(e.nativeEvent.layout);
+	  }
     // //e.nativeEvent.layout: {x, y, width, height}}}.
   }
 
   handleLabelLayoutChange(e){
-    // let {x, y, width, height} = {... e.nativeEvent.layout};
+	  if (Platform.OS === 'ios') {
+		  let {x, y, width, height} = {... e.nativeEvent.layout};
 
-    // this.setState({labelWidth:width});
+	      this.setState({labelWidth:width});
+	  }
     // //e.nativeEvent.layout: {x, y, width, height}}}.
   }
   handleChange(event){
