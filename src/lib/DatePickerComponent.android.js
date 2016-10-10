@@ -68,7 +68,10 @@ import {Field} from './Field';
             formStyles.horizontalContainer,
             this.props.containerStyle]}
           onLayout={this.handleLayoutChange.bind(this)}>
-
+		  {(this.props.iconLeft)
+            ? this.props.iconLeft
+            : null
+          }
           {placeholderComponent}
           <View style={[formStyles.alignRight, formStyles.horizontalContainer]}>
             <Text style={[formStyles.fieldValue,this.props.valueStyle ]}>{
@@ -77,7 +80,10 @@ import {Field} from './Field';
 
 
           </View>
-
+		  {(this.props.iconRight)
+              ? this.props.iconRight
+              : null
+          }
         </View>
         </Field>
         {(this.state.isPickerVisible)?
