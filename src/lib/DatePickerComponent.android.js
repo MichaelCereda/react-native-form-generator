@@ -44,7 +44,10 @@ import {Field} from './Field';
       try {
 
         const {action, year, month, day} = await DatePickerAndroid.open({
-          date: this.props.date || new Date()
+          date: this.props.date || new Date(),
+	  minDate:this.props.minimumDate,
+
+          maxDate:this.props.maximumDate
         });
         if (action !== DatePickerAndroid.dismissedAction) {
           this.handleValueChange(new Date(year,month,day));
