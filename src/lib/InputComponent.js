@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import ReactNative from 'react-native';
+import ReactNative, { Platform } from 'react-native';
 import {Field} from './Field.js';
 
 const {View, StyleSheet, TextInput, Text} = ReactNative;
@@ -98,17 +98,21 @@ export class InputComponent extends React.Component{
     return this.valid;
   }
   handleLayoutChange(e){
-    let {x, y, width, height} = {... e.nativeEvent.layout};
+	  if (Platform.OS === 'ios') {
+		  let {x, y, width, height} = {... e.nativeEvent.layout};
 
-    this.setState(e.nativeEvent.layout);
-    //e.nativeEvent.layout: {x, y, width, height}}}.
+	      this.setState(e.nativeEvent.layout);
+	  }
+    // //e.nativeEvent.layout: {x, y, width, height}}}.
   }
 
   handleLabelLayoutChange(e){
-    let {x, y, width, height} = {... e.nativeEvent.layout};
+	  if (Platform.OS === 'ios') {
+		  let {x, y, width, height} = {... e.nativeEvent.layout};
 
-    this.setState({labelWidth:width});
-    //e.nativeEvent.layout: {x, y, width, height}}}.
+	      this.setState({labelWidth:width});
+	  }
+    // //e.nativeEvent.layout: {x, y, width, height}}}.
   }
   handleChange(event){
     const value = event.nativeEvent.text;
