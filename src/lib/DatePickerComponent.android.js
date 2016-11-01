@@ -44,7 +44,10 @@ import {Field} from './Field';
       try {
 
         const {action, year, month, day} = await DatePickerAndroid.open({
-          date: this.props.date || new Date()
+          date: this.props.date || new Date(),
+	  minDate:this.props.minimumDate,
+
+          maxDate:this.props.maximumDate
         });
         if (action !== DatePickerAndroid.dismissedAction) {
           this.handleValueChange(new Date(year,month,day));
@@ -68,7 +71,10 @@ import {Field} from './Field';
             formStyles.horizontalContainer,
             this.props.containerStyle]}
           onLayout={this.handleLayoutChange.bind(this)}>
-
+		  {(this.props.iconLeft)
+            ? this.props.iconLeft
+            : null
+          }
           {placeholderComponent}
           <View style={[formStyles.alignRight, formStyles.horizontalContainer]}>
             <Text style={[formStyles.fieldValue,this.props.valueStyle ]}>{
@@ -77,7 +83,10 @@ import {Field} from './Field';
 
 
           </View>
-
+		  {(this.props.iconRight)
+              ? this.props.iconRight
+              : null
+          }
         </View>
         </Field>
         {(this.state.isPickerVisible)?
