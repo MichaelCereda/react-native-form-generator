@@ -95,7 +95,7 @@ export class DatePickerComponent extends React.Component{
             : null
           }
           {placeholderComponent}
-          <View style={[formStyles.alignRight, formStyles.horizontalContainer]}>
+          <View style={[formStyles.alignRight, formStyles.horizontalContainer, this.props.valueContainerStyle]}>
             <Text style={[formStyles.fieldValue,this.props.valueStyle ]}>{ valueString }</Text>
 
             {(iconRight)
