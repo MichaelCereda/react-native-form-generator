@@ -2,6 +2,7 @@
 
 
 import React from 'react';
+import PropTypes from 'prop-types';
 let { View, StyleSheet, TextInput, Text, DatePickerAndroid} = require('react-native');
 import {Field} from './Field';
 
@@ -58,7 +59,7 @@ import {Field} from './Field';
       }
       this.props.onPress && this.props.onPress(event);
     }
-    
+
     render(){
       let placeholderComponent = (this.props.placeholderComponent)
                         ? this.props.placeholderComponent
@@ -107,7 +108,7 @@ import {Field} from './Field';
   }
 
   DatePickerComponent.propTypes = {
-    dateTimeFormat: React.PropTypes.func
+    dateTimeFormat: PropTypes.func
   }
 
   DatePickerComponent.defaultProps = {
