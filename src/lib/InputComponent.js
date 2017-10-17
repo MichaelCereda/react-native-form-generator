@@ -1,6 +1,7 @@
 'use strict';
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactNative, { Platform } from 'react-native';
 import {Field} from './Field.js';
 
@@ -200,8 +201,8 @@ export class InputComponent extends React.Component{
 }
 
 // InputComponent.propTypes = {
-//   multiline: React.PropTypes.bool,
-//   placeholder:React.PropTypes.string,
+//   multiline: PropTypes.bool,
+//   placeholder:PropTypes.string,
 // }
 
 InputComponent.propTypes = {

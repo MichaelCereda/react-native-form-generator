@@ -2,6 +2,7 @@
 
 
 import React from 'react';
+import PropTypes from 'prop-types';
 let { View, StyleSheet, TextInput, Text, DatePickerIOS} = require('react-native');
 import {Field} from './Field';
 
@@ -117,9 +118,9 @@ export class DatePickerComponent extends React.Component{
 }
 
 DatePickerComponent.propTypes = {
-  dateTimeFormat: React.PropTypes.func,
-  pickerWrapper: React.PropTypes.element,
-  prettyPrint: React.PropTypes.bool
+  dateTimeFormat: PropTypes.func,
+  pickerWrapper: PropTypes.element,
+  prettyPrint: PropTypes.bool
 }
 
 DatePickerComponent.defaultProps = {
