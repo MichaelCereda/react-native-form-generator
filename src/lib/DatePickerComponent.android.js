@@ -59,7 +59,7 @@ import {Field} from './Field';
       }
       this.props.onPress && this.props.onPress(event);
     }
-    
+
     render(){
       let placeholderComponent = (this.props.placeholderComponent)
                         ? this.props.placeholderComponent
