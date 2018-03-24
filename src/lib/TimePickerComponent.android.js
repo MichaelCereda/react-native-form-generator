@@ -2,6 +2,7 @@
 
 
 import React from 'react';
+import PropTypes from 'prop-types';
 let { View, StyleSheet, TextInput, Text, TimePickerAndroid} = require('react-native');
 import {Field} from './Field';
 
@@ -97,8 +98,8 @@ import {Field} from './Field';
 
   }
   TimePickerComponent.propTypes = {
-    dateTimeFormat: React.PropTypes.func,
-    prettyPrint: React.PropTypes.bool
+    dateTimeFormat: PropTypes.func,
+    prettyPrint: PropTypes.bool
   }
 
   TimePickerComponent.defaultProps = {
