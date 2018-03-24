@@ -8,6 +8,7 @@ import {SwitchField} from './src/fields/SwitchField';
 import {PickerField} from './src/fields/PickerField';
 import {DatePickerField} from './src/fields/DatePickerField';
 import {TimePickerField} from './src/fields/TimePickerField';
+import {CountDownField} from './src/fields/CountDownField';
 
 
 //import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
@@ -15,5 +16,5 @@ export {
         Form,
         Separator, InputField, LinkField,
         SwitchField, PickerField, DatePickerField,
-        TimePickerField
+        CountDownField, TimePickerField
       }

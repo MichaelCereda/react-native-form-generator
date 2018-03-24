@@ -137,6 +137,9 @@ DatePickerComponent.defaultProps = {
       case 'time':
         value = date.toLocaleTimeString()
       break;
+        case 'countdown':
+            value = date.getHours() + ":" + date.getMinutes();
+            break;
       default:
         value = date.toLocaleDateString()
     }
